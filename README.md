@@ -63,7 +63,6 @@ DevDependencies
 
 ---
 
->>>>>>> 5852b037958355f695ba4ac5fea28a7e243933e2
 ## 프로젝트 구조
 
 ```jsx
