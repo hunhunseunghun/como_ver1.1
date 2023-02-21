@@ -1,45 +1,394 @@
 .App {
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  text-align: center;
   height: 100%;
-  padding: 10px;
-  background-color: #282c34;
+  box-sizing: border-box;
 }
-
-.App-logo {
-  height: 30vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  height: 100%;
+nav {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+
+  padding: 5px;
+  border-bottom: 1px solid rgb(229, 229, 229);
+}
+.custom-shape-divider-top-1646706813 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  z-index: -1;
+}
+
+.custom-shape-divider-top-1646706813 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 100px;
+}
+
+.custom-shape-divider-top-1646706813 .shape-fill {
+  fill: #060b8a;
+}
+
+@media (max-width: 767px) {
+  .custom-shape-divider-top-1646706813 svg {
+    width: calc(184% + 1.3px);
+    height: 100px;
+  }
+}
+nav section:first-child input {
+  all: unset;
+}
+.nav_top_section {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+.nav_top_section img {
+  width: 20px;
+}
+
+.windowXaxisSize_btn {
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.windowYaxisSize_btn {
+  color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.windowXaxisSize_btn:hover {
+  color: #dadada;
+  cursor: pointer;
+}
+
+nav section:last-child {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 5px;
+}
+
+nav section div {
+  display: flex;
+}
+
+nav section:last-child div:first-child div:first-child {
+  margin-right: 3px;
+}
+
+.coinSearchBar {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  color: #888383;
+  width: 110px;
+  height: 15px;
+  padding: 2px 4px;
+  border: 1px solid rgb(155, 155, 155);
+  border-radius: 5px;
+  font-size: 11px;
+  box-shadow: 0px 2px 4px 0px rgba(116, 116, 116, 0.589);
+}
+.coinSearchBar svg {
+  margin-right: 2px;
+  height: 11px;
+  width: 11px;
+}
+
+.coinSearchBar:hover {
+  background: #f0f0f0;
+}
+
+.coinSearchText {
+  width: 70%;
+  border: none;
+  background: none;
+  outline: none;
+  padding: 0;
+  font-size: 11px;
+  line-height: 10px;
+}
+
+.dropdown {
+  font-size: 11px;
+  width: 70px;
+}
+
+.dropdown .dropdownBtn {
+  position: relative;
+  width: 100%;
+  height: 16px;
+  padding: 2px 4px;
+  background: #ffffff;
+  box-shadow: 0px 2px 4px 0px rgba(116, 116, 116, 0.589);
+  color: #2b2b2b;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgb(155, 155, 155);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.dropdown .dropdownBtn:hover {
+  background: #f0f0f0;
+}
+
+.dropdown .dropdownBtn div {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown .dropdownBtn .exchangerLogo {
+  width: 11px;
+  height: 11px;
+  padding: 0 2px 0 0;
+}
+
+.dropdown .dropdownBtn img {
+  padding: 2px 0 0 0;
+}
+
+.dropdown .dropdownContent {
+  position: absolute;
+  display: block;
+  top: 63px;
+  box-sizing: border-box;
+  background: #f0f0f0;
+
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px 0px rgba(85, 85, 85, 0.589);
+  color: rgb(0, 0, 0);
+  font-weight: 400;
+}
+
+.marketDropdownContent {
+  width: 67px;
+}
+.exchangerDropdownContent {
+  width: 70px;
+}
+
+.dropdown .dropdownContent .dropdownItem {
+  display: flex;
+  align-items: left;
+  width: 100%;
+  padding: 4px 4px;
+  box-sizing: border-box;
+  transition: all 0.2s;
+}
+
+.dropdown .dropdownContent .dropdownItem img {
+  width: 14px;
+  height: 14px;
+  padding: 0 2px 0 0;
+}
+
+.dropdown .dropdownContent .dropdownItem:first-child {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.dropdown .dropdownContent .dropdownItem:last-child {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.dropdown .dropdownContent .dropdownItem:hover {
+  background: #bbbbbb;
+  cursor: pointer;
+}
+
+main {
+  height: 100%;
+}
+footer {
+  height: 10%;
+}
+
+.fontColorRise {
+  color: #d60000;
+}
+
+.fontColorFall {
+  color: #0051c7;
+}
+.fontColorEven {
+  color: #666666;
+}
+
+table {
+  display: block;
+  width: 400px;
+  height: 300px;
+  box-sizing: border-box;
+  overflow-y: scroll;
+  background-color: #ffffff;
+}
+
+.table_X_wide {
+  height: 510px;
+}
+.table_Y_wide {
+  width: 750px;
+}
+
+table thead {
+  display: block;
+  width: 100%;
+  height: 6%;
+  font-size: 10px;
+  background-color: #f9fafc;
+}
+
+table thead tr {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  width: 100%;
+  color: #666;
+}
+
+table thead tr th {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  text-align: right;
+  padding: 6px 4px;
+  font-weight: 600;
+}
+
+table thead tr th:hover {
+  background-color: #dddddd;
+  cursor: pointer;
+}
+table thead tr th:first-child:hover {
+  background-color: transparent;
+}
+
+table thead tr th img {
+  padding: 3px 0 0 2px;
+}
+
+table thead tr th:first-child {
+  justify-content: left;
+  padding: 6px 4px 6px 8px;
+  text-align: left;
+  cursor: default;
+}
+table thead tr th:last-child {
+  padding: 6px 8px 6px 4px;
+}
+
+table tbody {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 12px;
+  color: #2b2b2b;
+  font-weight: 400;
+}
+
+table tbody tr {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  width: 100%;
+}
+
+table tbody tr td {
+  display: flex;
+  align-items: center;
+  height: 47px;
+  padding: 5px;
+  box-sizing: border-box;
+}
+table tbody tr td img {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+table tbody tr td {
+  display: flex;
+  justify-content: right;
+  text-align: right;
+}
+
+.coinItemsName {
+  display: flex;
+  justify-content: space-between;
+}
+
+.coinItemsLogo {
+  display: flex;
+}
+
+.coinItemsName section {
+  display: flex;
+}
+
+.coinItemsName section div div {
+  word-break: break-all;
+  text-align: left;
+  font-weight: 600;
+}
+.coinItemsName section div div:nth-child(2) {
+  font-size: 10px;
+  text-align: left;
+  font-weight: 400;
+  color: #666666;
+}
+
+.coinItemsMarked {
+  color: #9e9e9e;
+}
+
+.coinItemsMarked:hover {
+  cursor: pointer;
+  color: rgb(255, 241, 116);
+}
+
+.coinItemsMarked svg {
+  width: 15px;
+  height: 15px;
+}
+
+.markedIcon {
+  color: rgb(255, 231, 19);
+}
+
+.markedIcon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.coinItemsRate {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.coinItemsRate div {
+  width: 100%;
+  text-align: right;
+}
+
+/* table tbody tr td:first-child div {
+  display: block;
+  word-break: break-all;
+  text-align: left;
+  font-weight: 600;
+}
+
+table tbody tr td:first-child div:nth-child(2) {
+  font-size: 10px;
+  text-align: left;
+  font-weight: 400;
+  color: #666666;
+} */
+
+table tbody tr td:nth-child(3) div:last-child {
+  font-size: 10px;
+}
+
+footer {
+  display: flex;
+  justify-content: right;
+  padding: 4px;
 }

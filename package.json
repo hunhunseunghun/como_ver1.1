@@ -13,8 +13,17 @@
     "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,json,css,scss,md}'"
   },
   "dependencies": {
+    "@redux-devtools/extension": "^3.2.5",
+    "axios": "^1.3.3",
+    "hangul-js": "^0.2.6",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.7.1",
+    "react-redux": "^8.0.5",
+    "redux": "^4.2.1",
+    "redux-saga": "^1.2.2",
+    "redux-thunk": "^2.4.2",
+    "text-encoding": "^0.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
