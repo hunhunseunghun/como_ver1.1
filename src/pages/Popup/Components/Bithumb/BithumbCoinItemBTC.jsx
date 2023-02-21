@@ -114,7 +114,7 @@ const BithumbCoinItemBTC = ({
         <div>{ticker.chgRate ? ticker.chgRate : chgRateHandler() + '%'}</div>
         <div>{chgPriceHandler()}</div>
       </td>
-      <td>{Number(ticker.acc_trade_price_24h).toFixed(4)}</td>
+      <td className="coinTransactionamount">{Number(ticker.acc_trade_price_24h).toFixed(4)}</td>
     </tr>
   );
 };

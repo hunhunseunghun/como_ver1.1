@@ -9,9 +9,6 @@
     "default_popup": "popup.html",
     "default_icon": "defaultcomologo.png"
   },
-  "chrome_url_overrides": {
-    "newtab": "newtab.html"
-  },
   "icons": {
     "16": "defaultcomologo.png",
     "32": "defaultcomologo.png",

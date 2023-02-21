@@ -45,7 +45,7 @@ nav section:first-child input {
   padding: 5px 0;
 }
 .nav_top_section img {
-  width: 20px;
+  width: 25px;
 }
 
 .windowXaxisSize_btn {
@@ -57,6 +57,10 @@ nav section:first-child input {
 }
 
 .windowXaxisSize_btn:hover {
+  color: #dadada;
+  cursor: pointer;
+}
+.windowYaxisSize_btn:hover  {
   color: #dadada;
   cursor: pointer;
 }
@@ -206,16 +210,21 @@ footer {
 }
 
 .fontColorRise {
+  font-weight: 600;
   color: #d60000;
 }
 
 .fontColorFall {
+  font-weight: 600;
   color: #0051c7;
 }
 .fontColorEven {
+  font-weight: 600;
   color: #666666;
 }
-
+.coinTransactionamount{
+  font-weight: 600;
+}
 table {
   display: block;
   width: 400px;
@@ -226,7 +235,7 @@ table {
 }
 
 .table_X_wide {
-  height: 510px;
+  height: 490px;
 }
 .table_Y_wide {
   width: 750px;
@@ -276,6 +285,7 @@ table thead tr th:first-child {
 }
 table thead tr th:last-child {
   padding: 6px 8px 6px 4px;
+  
 }
 
 table tbody {
