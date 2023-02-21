@@ -1,5 +1,6 @@
 import React from 'react';
-import { render } from 'react-dom';
+
+import * as ReactDOMClient from "react-dom/client";
 
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from '@redux-devtools/extension';
@@ -11,20 +12,25 @@ import { rootReducer, rootSaga } from './Reducer';
 import Popup from './Popup';
 import './index.css';
 
+
+const container = document.querySelector('#app-container');
+const root = ReactDOMClient.createRoot(container);
+
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(ReduxThunk, sagaMiddleware))
 );
 
+
 sagaMiddleware.run(rootSaga);
 console.log('rootSaga', rootSaga());
 console.log('store', store.getState());
-render(
+root.render(
   <Provider store={store}>
     <Popup />
   </Provider>,
-  window.document.querySelector('#app-container')
+//   window.document.querySelector('#app-container')
 );
 
 if (module.hot) module.hot.accept();
