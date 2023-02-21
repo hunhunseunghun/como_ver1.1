@@ -7,13 +7,16 @@
   "background": { "service_worker": "background.bundle.js" },
   "action": {
     "default_popup": "popup.html",
-    "default_icon": "icon-34.png"
+    "default_icon": "defaultcomologo.png"
   },
   "chrome_url_overrides": {
     "newtab": "newtab.html"
   },
   "icons": {
-    "128": "icon-128.png"
+    "16": "defaultcomologo.png",
+    "32": "defaultcomologo.png",
+    "48": "defaultcomologo.png",
+    "128": "defaultcomologo.png"
   },
   "content_scripts": [
     {
