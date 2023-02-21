@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-# **COMO**
-
-![defaultcomologo.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2f71341e-a5d8-44c1-8632-c642dc818ead/defaultcomologo.png)
-
-**Coin Monitoring Chrome Extension**
-
-가상화폐 시세조회 크롬 익스텐션
-
----
-
-=======
 # <img src="./src/assets/img/defaultcomologo.png"  width="80" height="80"/> **COMO** **_- Cryptocurrency Monitoring Chrome Extension_**
 
 <p align="center">
@@ -68,17 +56,6 @@ DevDependencies
 ```jsx
 COMO-Chrome-Extension
 └─ src                      # webpack의 entry point 입니다.
-<<<<<<< HEAD
-    └─ pages                # exentions 기능별 페이지 분류입니다
-			   └─ popup           # 해당 프로젝트 메인 팝업의 소스코드입니다
-					  ├─ Api          # Api를 모아놓은 폴더입니다
-						├─ Components   # 컴포넌트들을 모아놓습니다.
-						├─ Reducer      # Redux Reducer를 모아놓고 관리합니다.
-						├─ Utils        # Redux Action의 함수들을 모아놓고 관리합니다.
-```
-
-## STACK
-=======
   └─ pages                  # exentions 기능별 페이지 분류입니다
     └─ popup                # 해당 프로젝트 메인 팝업의 소스코드입니다
       ├─ Api                # Api를 모아놓은 폴더입니다
@@ -94,4 +71,3 @@ COMO-Chrome-Extension
 <p align="center">
 <img src="./como_gif/Architecture.png"/>
 </p >
->>>>>>> 5852b037958355f695ba4ac5fea28a7e243933e2
