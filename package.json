@@ -1,7 +1,7 @@
 {
-  "name": "COMO_ver1.1",
+  "name": "COMO - 가상화폐 간편하게 모니터링하기!",
   "version": "1,0",
-  "description": "가상화폐 시세조회 크롬 익스텐션 (업비트, 빗썸 시세 지원)",
+  "description": "업비트, 빗썸 거래소 코인(가상화폐) 시세 조회",
   "repository": {
     "type": "git",
     "url": "https://github.com/hunhunseunghun/como_ver1.1"
