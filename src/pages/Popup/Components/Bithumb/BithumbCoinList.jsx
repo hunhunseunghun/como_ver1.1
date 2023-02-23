@@ -160,7 +160,7 @@ const BithumbCoinList = ({
 
     setBithumbTickersKRW(bithumbTickersKrwArr);
     setBithumbTickersBTC(bithumbTickersBtcArr);
-  }, [tickers, makeSort, searchCoinName]);
+  }, [tickers, makeSort, searchCoinName, markedCoinKRW, markedCoinBTC]);
 
   const switchColorHandler = (current = 0) => {
     if (current > 0) {

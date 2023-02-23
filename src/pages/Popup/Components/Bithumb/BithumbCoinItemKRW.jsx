@@ -116,7 +116,7 @@ const BithumbCoinItemKRW = ({
         </div>
         <div>{chgPriceHandler()}</div>
       </td>
-      <td>
+      <td className="coinTransactionamount">
         {(Number(ticker.acc_trade_price_24h) / 1000000).toFixed() + '백만'}
       </td>
     </tr>

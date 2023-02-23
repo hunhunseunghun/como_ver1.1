@@ -1,7 +1,7 @@
 {
-  "name": "chrome-extension-coin-monitering",
-  "version": "1,0",
-  "description": "가상화폐 시세조회 크롬 익스텐션 (업비트, 빗썸 시세 지원)",
+  "name": "COMO - 가상화폐 간편하게 모니터링하기!",
+  "version": "1.0.1",
+  "description": "업비트, 빗썸 거래소 코인(가상화폐) 시세 조회",
   "repository": {
     "type": "git",
     "url": "https://github.com/hunhunseunghun/como_ver1.1"
@@ -19,7 +19,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
     "react-redux": "^8.0.5",
-    "redux": "^4.2.1",
+    "redux": "^4.1.2",
     "redux-saga": "^1.2.2",
     "redux-thunk": "^2.4.2",
     "text-encoding": "^0.7.0"

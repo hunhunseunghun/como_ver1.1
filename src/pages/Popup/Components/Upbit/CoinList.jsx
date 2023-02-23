@@ -32,7 +32,6 @@ const CoinList = ({
   useEffect(() => {
     let upbitTickersArrKRW = [];
     let upbitTickersArrBTC = [];
-
     // tickers 객체 배열화
     for (let key in upbitTickers) {
       if (upbitTickers[key]['market'].includes('KRW-')) {
@@ -148,7 +147,7 @@ const CoinList = ({
 
     setUpbitTickersKRW(upbitTickersArrKRW);
     setUpbitTickerBTC(upbitTickersArrBTC);
-  }, [upbitTickers, makeSort, sortElement, searchCoinName]);
+  }, [upbitTickers, makeSort, sortElement, searchCoinName, markedCoinKRW, markedCoinBTC]);
 
   const switchColorHandler = (current) => {
     switch (current) {

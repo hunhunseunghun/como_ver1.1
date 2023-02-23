@@ -82,7 +82,7 @@ const CoinItemBTC = ({
         </div>
       </td>
       <td>
-        <div>
+        <div className="coinTransactionamount">
           {ticker.acc_trade_price_24h.toFixed(4)}
           {' BTC'}
         </div>

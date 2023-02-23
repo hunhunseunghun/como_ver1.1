@@ -81,7 +81,7 @@ const CoinItemKRW = ({
         </div>
       </td>
       <td>
-        <div>
+        <div className="coinTransactionamount">
           {(ticker.acc_trade_price_24h / 1000000).toFixed()}
           {' 백만'}
         </div>
