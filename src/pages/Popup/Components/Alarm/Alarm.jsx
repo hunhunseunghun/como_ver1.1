@@ -1,7 +1,10 @@
 import react,{useState,useEffect} from "react"
 
 
-const Alram = () => {
+const Alram = (tickers) => {
+
+const [isAlarmselected, setIsAlarmselected] = useState(false)
+
 
 useEffect(()=>{
 
@@ -9,7 +12,9 @@ useEffect(()=>{
 
 
 
-return 
+return (
+    <div className={`alarm ${isAlarmselected? tickers+"AlarmOn": ""}`}></div>
+)
 
 
 
