@@ -12,7 +12,7 @@
 ---
 
 ## Chrome Webstore
-- [Google]"https://chrome.google.com/webstore/detail/%EC%BD%94%EB%AA%A8como-%EA%B0%80%EC%83%81%ED%99%94%ED%8F%90-%EA%B1%B0%EB%9E%98%EC%86%8C-%EC%8B%9C%EC%84%B8-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-%EB%B9%84/camiahnljjgndaficdcpboimdbdphnok", "google link")
+- [chrome Webstore Extension]("https://chrome.google.com/webstore/detail/%EC%BD%94%EB%AA%A8como-%EA%B0%80%EC%83%81%ED%99%94%ED%8F%90-%EA%B1%B0%EB%9E%98%EC%86%8C-%EC%8B%9C%EC%84%B8-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-%EB%B9%84/camiahnljjgndaficdcpboimdbdphnok")
 
 
 ## :wrench: Skills
