@@ -11,6 +11,7 @@ const CoinItemKRW = ({
   localStorageDataKRW,
 }) => {
   const [isMarked, setIsMarked] = useState(false);
+  const [isAlarmselected, setIsAlarmselected] = useState(false); // for alram state
 
   useEffect(() => {
     //로컬스토리지 즐겨찾기 배열 데이터에서 해당요소 확인 (마켓이름 사용)

@@ -62,6 +62,7 @@ export const bithumbTransactionUtil = (state, action) => {
 
 export const bithumbWebsocketUtil = (state, action) => {
   const assignObj = { ...state.bithumbTickers };
+  console.log('bithumbWebsocketUtil excuted', assignObj);
   for (let key in action.payload) {
     // 초기 데이터와 websocket 데이터 병합
     if (assignObj[key]) {
@@ -75,35 +76,3 @@ export const bithumbWebsocketUtil = (state, action) => {
     },
   };
 };
-
-export const bithumbWebsocketUtils = (state, action) => {
-  const assignObj = { ...state.bithumbTickers };
-  for (let key in action.payload) {
-    // 초기 데이터와 websocket 데이터 병합
-    if (assignObj[key]) {
-      assignObj[key] = Object.assign(assignObj[key], action.payload[key]);
-    }
-  }
-  return {
-    ...state,
-    bithumbTickers: {
-      ...assignObj,
-    },
-  };
-};
-
-// axios(config)
-// 			.then((response) => {
-// 				const url = window.URL.createObjectURL(
-// 					new Blob([response.data], { type: response.headers['content-type'] }),
-// 				);
-// 				const link = document.createElement('a');
-// 				link.href = url;
-// 				link.setAttribute('download', 'challengers.xlsx');
-// 				document.body.appendChild(link);
-// 				link.click();
-// 			})
-// 			.catch((err, b) => {
-// 				console.log('err: ', err);
-// 				console.log('b: ', b);
-// 			});
