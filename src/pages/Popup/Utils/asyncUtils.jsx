@@ -81,7 +81,8 @@ const createSocketChannel = (socket, websocketParam, buffer) => {
     };
 
     const unsubscribe = () => {
-      socket.close();state.Coin
+      socket.close();
+      state.Coin;
     };
 
     return unsubscribe;
@@ -285,20 +286,32 @@ const createBithumbSocketChannel = (socket, websocketParam, buffer) => {
       const websocketParamTostring = websocketParam
         .map((ele) => "'" + ele + "'")
         .toString();
+      console.log('websocketParam : ', websocketParam);
+      //type	구독 메시지 종류("ticker" / "transaction" / "orderbookdepth")	String
 
       socket.send(
-        `{"type":"ticker","symbols":[${websocketParamTostring}],"tickTypes":["MID"]}`
+        JSON.stringify({
+          type: 'ticker',
+          symbols: [websocketParamTostring],
+          tickTypes: ['MID'],
+        })
       );
+
+      // socket.send(
+      //   `{"type":"ticker","symbols":[${websocketParamTostring}],"tickTypes":["MID"]}`
+      // );
     };
 
     socket.onmessage = (blob) => {
       const ticker = JSON.parse(blob.data);
+      console.log('websocket onmessage excuted', ticker);
 
       emit(ticker);
     };
 
     socket.onerror = (err) => {
       emit(err);
+      console.log(err);
       emit(END);
     };
 
@@ -318,16 +331,15 @@ export const createBithumbWebsocketBufferSaga = (SUCCESS, FAIL) => {
     const socket = yield call(createBithumbWebSocket);
     const websocketChannel = yield call(
       createBithumbSocketChannel,
-      socket, 
+      socket,
       websocketParam,
       buffers.expanding(1)
     );
-
+    console.log('bithumbwebsocket sortedObj excuted', marketNames);
     try {
       while (true) {
         // 제네레이터 무한 반복문
         const bufferData = yield flush(websocketChannel); // 버퍼 데이터 가져오기
-
         if (bufferData.length) {
           const sortedObj = {};
           bufferData.forEach((ele) => {
@@ -335,7 +347,7 @@ export const createBithumbWebsocketBufferSaga = (SUCCESS, FAIL) => {
               sortedObj[ele.content.symbol] = ele.content;
             }
           });
-
+          console.log('bithumbwebsocket sortedObj excuted', sortedObj);
           yield put({
             type: SUCCESS,
             payload: sortedObj,
@@ -382,7 +394,7 @@ export const createCoinoneTickerSaga = (SUCCESS, FAIL, API) => {
 export const createRequestSaga = (type, api, dataMaker) => {
   const SUCCESS = `${type} of SUCCESS`;
   const FAIL = `${type} of FAIL`;
-    
+
   // try {
   //   if (SUCCESS) {
   //     const marketNames = yield select((state) => state.Coin.marketNames); // select  == useSelecotor
@@ -394,12 +406,11 @@ export const createRequestSaga = (type, api, dataMaker) => {
   // }
 };
 
-
 //캔들용 사가
 export const createRequestUpbitickersSaga = (type, api, dataMaker) => {
   const SUCCESS = `${type} of SUCCESS`;
   const FAIL = `${type} of FAIL`;
-    
+
   // try {
   //   if (SUCCESS) {
   //     const marketNames = yield select((state) => state.Coin.marketNames); // select  == useSelecotor

@@ -9,6 +9,15 @@
     "default_popup": "popup.html",
     "default_icon": "defaultcomologo.png"
   },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+Q",
+        "mac": "Alt+Q"
+      },
+      "description": "COMO"
+    }
+  },
   "icons": {
     "16": "defaultcomologo.png",
     "32": "defaultcomologo.png",
