@@ -2,8 +2,6 @@ import react, { useState, useEffect } from 'react';
 import { AiFillBell } from 'react-icons/ai';
 
 const Alram = (tickers) => {
-  const [isAlarmselected, setIsAlarmselected] = useState(false);
-
   useEffect(() => {}, []);
 
   return (

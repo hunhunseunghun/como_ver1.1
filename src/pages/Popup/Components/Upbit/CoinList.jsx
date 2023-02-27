@@ -147,7 +147,14 @@ const CoinList = ({
 
     setUpbitTickersKRW(upbitTickersArrKRW);
     setUpbitTickerBTC(upbitTickersArrBTC);
-  }, [upbitTickers, makeSort, sortElement, searchCoinName, markedCoinKRW, markedCoinBTC]);
+  }, [
+    upbitTickers,
+    makeSort,
+    sortElement,
+    searchCoinName,
+    markedCoinKRW,
+    markedCoinBTC,
+  ]);
 
   const switchColorHandler = (current) => {
     switch (current) {
