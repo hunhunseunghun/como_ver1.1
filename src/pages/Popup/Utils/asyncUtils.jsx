@@ -60,6 +60,7 @@ const createSocketChannel = (socket, websocketParam, buffer) => {
   return eventChannel((emit) => {
     //이벤트 채널
     socket.onopen = () => {
+      console.log('websocketupbitparams=', websocketParam);
       socket.send(
         JSON.stringify([
           { ticket: 'downbit-clone' },

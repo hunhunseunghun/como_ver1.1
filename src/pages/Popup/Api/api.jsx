@@ -47,7 +47,7 @@ export const coinApi = {
   //업비트 호가 정보 조회
   //   필드	설명	타입
   // market	마켓 코드	String
-  // timestamp	호가 생성 시각	Long
+  // timestamp	호가 생성 시각	Long+
   // total_ask_size	호가 매도 총 잔량	Double
   // total_bid_size	호가 매수 총 잔량	Double
   // orderbook_units	호가	List of Objects
