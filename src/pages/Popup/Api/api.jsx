@@ -99,7 +99,3 @@ export const coinApi = {
     return axios.get('https://api.coinone.co.kr/v1/order/limit_buy/');
   },
 };
-
-// coinApi.getUpbitCandle().then((res) => {
-//   console.log(res);
-// });

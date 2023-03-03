@@ -60,7 +60,6 @@ const createSocketChannel = (socket, websocketParam, buffer) => {
   return eventChannel((emit) => {
     //이벤트 채널
     socket.onopen = () => {
-      console.log('websocketupbitparams=', websocketParam);
       socket.send(
         JSON.stringify([
           { ticket: 'downbit-clone' },
@@ -142,25 +141,31 @@ export const createWebsocketBufferSaga = (SUCCESS, FAIL) => {
 export const createBithumbTickersKrw = (SUCCESS, FAIL, API) => {
   return function* () {
     try {
-      const tickers = yield call(API);
-      // call 을 사용하면 특정 함수를 호출하고, 결과물이 반환 될 때까지 기다려줄 수 있습니다.
-      const editkeyTickers = {};
-      for (let key in tickers.data.data) {
-        if (key !== 'date') {
-          editkeyTickers[`${key}_KRW`] = { ...tickers.data.data[key] };
-          editkeyTickers[`${key}_KRW`]['market'] = `${key}_KRW`;
-          if (bithumbCoinInfo[`${key}`]) {
-            editkeyTickers[`${key}_KRW`]['korean_name'] =
-              bithumbCoinInfo[`${key}`]['korean_name'];
+      while (true) {
+        // bithumb ticker get 요청 무한 반복 , delay 1000ms
+
+        const tickers = yield call(API);
+        // call 을 사용하면 특정 함수를 호출하고, 결과물이 반환 될 때까지 기다려줄 수 있습니다.
+        const editkeyTickers = {};
+        for (let key in tickers.data.data) {
+          if (key !== 'date') {
+            editkeyTickers[`${key}_KRW`] = { ...tickers.data.data[key] };
+            editkeyTickers[`${key}_KRW`]['market'] = `${key}_KRW`;
+            if (bithumbCoinInfo[`${key}`]) {
+              editkeyTickers[`${key}_KRW`]['korean_name'] =
+                bithumbCoinInfo[`${key}`]['korean_name'];
+            }
+            editkeyTickers[`${key}_KRW`]['initChgRate'] =
+              ((tickers.data.data[key]['closing_price'] -
+                tickers.data.data[key]['prev_closing_price']) /
+                tickers.data.data[key]['prev_closing_price']) *
+              100;
           }
-          editkeyTickers[`${key}_KRW`]['initChgRate'] =
-            ((tickers.data.data[key]['closing_price'] -
-              tickers.data.data[key]['prev_closing_price']) /
-              tickers.data.data[key]['prev_closing_price']) *
-            100;
         }
+        yield put({ type: SUCCESS, payload: editkeyTickers });
+
+        yield delay(1000);
       }
-      yield put({ type: SUCCESS, payload: editkeyTickers });
     } catch (err) {
       yield put({ type: FAIL, payload: err });
       throw err;
@@ -171,26 +176,28 @@ export const createBithumbTickersKrw = (SUCCESS, FAIL, API) => {
 export const createBithumbTickersBtc = (SUCCESS, FAIL, API) => {
   return function* () {
     try {
-      const tickers = yield call(API);
-      console.log(tickers.data.data);
-      const editkeyTickers = {};
-      for (let key in tickers.data.data) {
-        if (key !== 'date') {
-          editkeyTickers[`${key}_BTC`] = { ...tickers.data.data[key] };
-          editkeyTickers[`${key}_BTC`]['market'] = `${key}_BTC`;
+      while (true) {
+        const tickers = yield call(API);
+        const editkeyTickers = {};
+        for (let key in tickers.data.data) {
+          if (key !== 'date') {
+            editkeyTickers[`${key}_BTC`] = { ...tickers.data.data[key] };
+            editkeyTickers[`${key}_BTC`]['market'] = `${key}_BTC`;
 
-          if (bithumbCoinInfo[`${key}`]) {
-            editkeyTickers[`${key}_BTC`]['korean_name'] =
-              bithumbCoinInfo[`${key}`]['korean_name'];
+            if (bithumbCoinInfo[`${key}`]) {
+              editkeyTickers[`${key}_BTC`]['korean_name'] =
+                bithumbCoinInfo[`${key}`]['korean_name'];
+            }
+            editkeyTickers[`${key}_BTC`]['initChgRate'] =
+              ((tickers.data.data[key]['closing_price'] -
+                tickers.data.data[key]['prev_closing_price']) /
+                tickers.data.data[key]['prev_closing_price']) *
+              100;
           }
-          editkeyTickers[`${key}_BTC`]['initChgRate'] =
-            ((tickers.data.data[key]['closing_price'] -
-              tickers.data.data[key]['prev_closing_price']) /
-              tickers.data.data[key]['prev_closing_price']) *
-            100;
         }
+        yield put({ type: SUCCESS, payload: editkeyTickers });
+        yield delay(1000);
       }
-      yield put({ type: SUCCESS, payload: editkeyTickers });
     } catch (err) {
       yield put({ type: FAIL, payload: err });
       throw err;
@@ -203,7 +210,7 @@ export const createBithumbTransaction = (SUCCESS, FAIL, API) => {
     const bithumbTickers = yield select((state) => state.Coin.bithumbTickers);
 
     const transactionParam = Object.keys(bithumbTickers);
-    console.log(transactionParam);
+
     let counter = 0;
     let recievedTransaction = {};
     try {
@@ -227,7 +234,6 @@ export const createBithumbTransaction = (SUCCESS, FAIL, API) => {
                   transactionParam.length * 0.5
                 )
                 .map(async (ele) => {
-                  console.log('excuted2');
                   const response = await API(ele);
 
                   response.data.data[0].market = ele;
@@ -264,7 +270,6 @@ export const createBithumbTransaction = (SUCCESS, FAIL, API) => {
         };
         yield transactionResponse();
 
-        console.log('data', recievedTransaction, counter);
         // yield put({ type: SUCCESS, payload: recievedTransaction });
         yield delay(5000);
       }
@@ -287,8 +292,6 @@ const createBithumbSocketChannel = (socket, websocketParam, buffer) => {
       const websocketParamTostring = websocketParam
         .map((ele) => "'" + ele + "'")
         .toString();
-      console.log('websocketParam : ', websocketParam);
-      //type	구독 메시지 종류("ticker" / "transaction" / "orderbookdepth")	String
 
       socket.send(
         JSON.stringify({
@@ -297,15 +300,10 @@ const createBithumbSocketChannel = (socket, websocketParam, buffer) => {
           tickTypes: ['MID'],
         })
       );
-
-      // socket.send(
-      //   `{"type":"ticker","symbols":[${websocketParamTostring}],"tickTypes":["MID"]}`
-      // );
     };
 
     socket.onmessage = (blob) => {
       const ticker = JSON.parse(blob.data);
-      console.log('websocket onmessage excuted', ticker);
 
       emit(ticker);
     };
@@ -334,9 +332,9 @@ export const createBithumbWebsocketBufferSaga = (SUCCESS, FAIL) => {
       createBithumbSocketChannel,
       socket,
       websocketParam,
-      buffers.expanding(1)
+      buffers.expanding(1000)
     );
-    console.log('bithumbwebsocket sortedObj excuted', marketNames);
+
     try {
       while (true) {
         // 제네레이터 무한 반복문
@@ -348,13 +346,13 @@ export const createBithumbWebsocketBufferSaga = (SUCCESS, FAIL) => {
               sortedObj[ele.content.symbol] = ele.content;
             }
           });
-          console.log('bithumbwebsocket sortedObj excuted', sortedObj);
+
           yield put({
             type: SUCCESS,
             payload: sortedObj,
           });
         }
-        yield delay(1); // 500ms 동안 대기
+        yield delay(1000); // 500ms 동안 대기
       }
     } catch (err) {
       console.log('err excuted');
@@ -389,36 +387,4 @@ export const createCoinoneTickerSaga = (SUCCESS, FAIL, API) => {
       throw err;
     }
   };
-};
-
-//캔들용 사가
-export const createRequestSaga = (type, api, dataMaker) => {
-  const SUCCESS = `${type} of SUCCESS`;
-  const FAIL = `${type} of FAIL`;
-
-  // try {
-  //   if (SUCCESS) {
-  //     const marketNames = yield select((state) => state.Coin.marketNames); // select  == useSelecotor
-  //     const upbitTickers = yield select((state) => state.Coin.upbitTickers)
-  //   }
-  // } catch {
-  //   if (FAIL) {
-  //   }
-  // }
-};
-
-//캔들용 사가
-export const createRequestUpbitickersSaga = (type, api, dataMaker) => {
-  const SUCCESS = `${type} of SUCCESS`;
-  const FAIL = `${type} of FAIL`;
-
-  // try {
-  //   if (SUCCESS) {
-  //     const marketNames = yield select((state) => state.Coin.marketNames); // select  == useSelecotor
-  //     const upbitTickers = yield select((state) => state.Coin.upbitTickers)
-  //   }
-  // } catch {
-  //   if (FAIL) {
-  //   }
-  // }
 };
