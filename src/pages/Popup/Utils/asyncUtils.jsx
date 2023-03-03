@@ -57,7 +57,6 @@ const createUpbitWebSocket = () => {
 
 //웹 소켓 파라미터 전송 요청 및 리스폰스
 const createSocketChannel = (socket, websocketParam, buffer) => {
-  console.log('websocketupbitparams=', websocketParam);
   return eventChannel((emit) => {
     //이벤트 채널
     socket.onopen = () => {
@@ -144,7 +143,7 @@ export const createBithumbTickersKrw = (SUCCESS, FAIL, API) => {
     try {
       while (true) {
         // bithumb ticker get 요청 무한 반복 , delay 1000ms
-        console.log('bithumb infinity loops excuted KRW');
+
         const tickers = yield call(API);
         // call 을 사용하면 특정 함수를 호출하고, 결과물이 반환 될 때까지 기다려줄 수 있습니다.
         const editkeyTickers = {};
@@ -178,7 +177,6 @@ export const createBithumbTickersBtc = (SUCCESS, FAIL, API) => {
   return function* () {
     try {
       while (true) {
-        console.log('bithumb infinity loops excuted BTC');
         const tickers = yield call(API);
         const editkeyTickers = {};
         for (let key in tickers.data.data) {
@@ -212,7 +210,7 @@ export const createBithumbTransaction = (SUCCESS, FAIL, API) => {
     const bithumbTickers = yield select((state) => state.Coin.bithumbTickers);
 
     const transactionParam = Object.keys(bithumbTickers);
-    console.log(transactionParam);
+
     let counter = 0;
     let recievedTransaction = {};
     try {
@@ -236,7 +234,6 @@ export const createBithumbTransaction = (SUCCESS, FAIL, API) => {
                   transactionParam.length * 0.5
                 )
                 .map(async (ele) => {
-                  console.log('excuted2');
                   const response = await API(ele);
 
                   response.data.data[0].market = ele;
@@ -273,7 +270,6 @@ export const createBithumbTransaction = (SUCCESS, FAIL, API) => {
         };
         yield transactionResponse();
 
-        console.log('data', recievedTransaction, counter);
         // yield put({ type: SUCCESS, payload: recievedTransaction });
         yield delay(5000);
       }
@@ -296,7 +292,6 @@ const createBithumbSocketChannel = (socket, websocketParam, buffer) => {
       const websocketParamTostring = websocketParam
         .map((ele) => "'" + ele + "'")
         .toString();
-      console.log('websocketParam : ', websocketParamTostring);
 
       socket.send(
         JSON.stringify({
@@ -339,7 +334,7 @@ export const createBithumbWebsocketBufferSaga = (SUCCESS, FAIL) => {
       websocketParam,
       buffers.expanding(1000)
     );
-    console.log('bithumbwebsocket marketNames excuted', marketNames);
+
     try {
       while (true) {
         // 제네레이터 무한 반복문
@@ -351,7 +346,7 @@ export const createBithumbWebsocketBufferSaga = (SUCCESS, FAIL) => {
               sortedObj[ele.content.symbol] = ele.content;
             }
           });
-          console.log('bithumbwebsocket sortedObj excuted', sortedObj);
+
           yield put({
             type: SUCCESS,
             payload: sortedObj,
