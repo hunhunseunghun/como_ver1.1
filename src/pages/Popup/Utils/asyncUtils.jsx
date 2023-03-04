@@ -352,7 +352,7 @@ export const createBithumbWebsocketBufferSaga = (SUCCESS, FAIL) => {
             payload: sortedObj,
           });
         }
-        yield delay(1000); // 500ms 동안 대기
+        yield delay(1000); // 1000ms 동안 대기
       }
     } catch (err) {
       console.log('err excuted');
