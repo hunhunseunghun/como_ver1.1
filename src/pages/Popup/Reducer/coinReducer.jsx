@@ -119,10 +119,6 @@ export function* coinSaga() {
   // yield takeEvery(START_BITHUMB, bithumbSaga);
 }
 
-export function* bithumbSaga() {
-  // yield bithumbWebsocketACTION(); 빗썸 websocket response 수신 오류 => 단순 get 무한 요청 tickers 조회로 변경
-}
-
 function* startInittSaga() {
   // yield getInitCandleSaga()
   yield coinNameAction();
