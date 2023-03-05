@@ -1,9 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { startInit, startBithumb } from './Reducer/coinReducer.jsx';
 import './Popup.css';
-
-import encoding from 'text-encoding';
 
 import CoinList from './Components/Upbit/CoinList.jsx';
 import ExchangerDropdown from './Components/Dropdown/ExchangerDropdown';
@@ -98,14 +96,14 @@ const Popup = () => {
 
           <section>
             <div
-              className="windowYaxisSize_btn"
+              className="windowXaxisSize_btn"
               onClick={() => {
                 setWindowYaxisSize(!windowYaxisSize);
                 windowResize();
               }}
               data-tip
-              data-="windowXaxisSize_btn_tooltip"
-              title={`창 가로 ${windowYaxisSize ? '축소' : '확대'}`}
+              data-for="windowXaxisSize_btn_tooltip"
+              title={`창 세로 ${windowYaxisSize ? '축소' : '확대'}`}
             >
               {windowYaxisSize ? (
                 <CgArrowRightR size="20" />
@@ -114,14 +112,14 @@ const Popup = () => {
               )}
             </div>
             <div
-              className="windowXaxisSize_btn"
+              className="windowYaxisSize_btn"
               onClick={() => {
                 setWindowXaxisSize(!windowXaxisSize);
                 windowResize();
               }}
               data-tip
-              data-for="windowXaxisSize_btn_tooltip"
-              title={`창 세로 ${windowXaxisSize ? '축소' : '확대'}`}
+              data-="windowXaxisSize_btn_tooltip"
+              title={`창 가로 ${windowXaxisSize ? '축소' : '확대'}`}
             >
               {windowXaxisSize ? (
                 <CgArrowUpR size="20" />

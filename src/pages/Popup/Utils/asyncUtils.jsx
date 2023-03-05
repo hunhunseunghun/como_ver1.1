@@ -337,7 +337,7 @@ export const createBithumbWebsocketBufferSaga = (SUCCESS, FAIL) => {
 
     try {
       while (true) {
-        // 제네레이터 무한 반복문
+        // 무한 반복문
         const bufferData = yield flush(websocketChannel); // 버퍼 데이터 가져오기
         if (bufferData.length) {
           const sortedObj = {};

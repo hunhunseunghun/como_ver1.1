@@ -60,7 +60,7 @@ nav section:first-child input {
   color: #dadada;
   cursor: pointer;
 }
-.windowYaxisSize_btn:hover  {
+.windowYaxisSize_btn:hover {
   color: #dadada;
   cursor: pointer;
 }
@@ -223,13 +223,13 @@ footer {
   font-weight: 600;
   color: #666666;
 }
-.coinTransactionamount{
+.coinTransactionamount {
   font-weight: 600;
 }
 table {
   display: block;
-  width: 400px;
-  height: 300px;
+  width: 420px;
+  height: 350px;
   box-sizing: border-box;
   overflow-y: scroll;
   background-color: #ffffff;
@@ -239,7 +239,7 @@ table {
   height: 490px;
 }
 .table_Y_wide {
-  width: 750px;
+  width: 500px;
 }
 
 table thead {
@@ -286,7 +286,6 @@ table thead tr th:first-child {
 }
 table thead tr th:last-child {
   padding: 6px 8px 6px 4px;
-  
 }
 
 table tbody {
