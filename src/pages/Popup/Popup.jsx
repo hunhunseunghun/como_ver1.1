@@ -108,9 +108,9 @@ const Popup = () => {
               title={`창 가로 ${windowYaxisSize ? '축소' : '확대'}`}
             >
               {windowYaxisSize ? (
-                <CgArrowLeftR size="20" />
-              ) : (
                 <CgArrowRightR size="20" />
+              ) : (
+                <CgArrowLeftR size="20" />
               )}
             </div>
             <div
