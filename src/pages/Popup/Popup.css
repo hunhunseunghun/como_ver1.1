@@ -330,6 +330,17 @@ table tbody tr td {
   display: flex;
 }
 
+.coinItemsPrice {
+  animation: blink 1;
+}
+@keyframes blink {
+  0% {
+    background-color: none;
+  }
+  50% {
+    background-color: red;
+  }
+}
 .coinItemsName section {
   display: flex;
 }
