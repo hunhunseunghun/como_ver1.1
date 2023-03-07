@@ -68,8 +68,10 @@ const CoinItemKRW = ({
           {isMarked ? <AiFillStar /> : <FiStar />}
         </section>
       </td>
-      <td className={switchColorHandler(ticker.change)}>
-        <div>{ticker.trade_price.toLocaleString()}</div>
+      <td className={`${switchColorHandler(ticker.change)}`}>
+        <div className="coinItemsPrice">
+          {ticker.trade_price.toLocaleString()}
+        </div>
       </td>
       <td className={switchColorHandler(ticker.change) + ' coinItemsRate'}>
         <div>
@@ -83,7 +85,10 @@ const CoinItemKRW = ({
       </td>
       <td>
         <div className="coinTransactionamount">
-          {(ticker.acc_trade_price_24h / 1000000).toFixed()}
+          {(ticker.acc_trade_price_24h / 1000000)
+            .toFixed()
+            .toString()
+            .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}
           {' 백만'}
         </div>
       </td>

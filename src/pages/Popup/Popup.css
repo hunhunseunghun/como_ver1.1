@@ -236,10 +236,10 @@ table {
 }
 
 .table_X_wide {
-  height: 490px;
+  height: 500px;
 }
 .table_Y_wide {
-  width: 500px;
+  width: 700px;
 }
 
 table thead {
@@ -330,6 +330,17 @@ table tbody tr td {
   display: flex;
 }
 
+.coinItemsPrice {
+  animation: blink 1;
+}
+@keyframes blink {
+  0% {
+    background-color: none;
+  }
+  50% {
+    background-color: red;
+  }
+}
 .coinItemsName section {
   display: flex;
 }

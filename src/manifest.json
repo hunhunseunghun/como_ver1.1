@@ -1,7 +1,7 @@
 {
-  "version": "1.0.4",
+  "version": "1.0.5",
   "manifest_version": 3,
-  "name": "COMO - 가상화폐 거래소 시세 (Bitcoin, Cryptocurrency)",
+  "name": "COMO-가상화폐 시세 비트코인(Bitcoin&Cryptocurrencies)",
   "description": "Upbit, bithumb 거래소 가상화폐 시세 조회",
   "options_page": "options.html",
   "background": { "service_worker": "background.bundle.js" },
