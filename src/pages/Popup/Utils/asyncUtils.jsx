@@ -143,7 +143,6 @@ export const createBithumbTickersKrw = (SUCCESS, FAIL, API) => {
     try {
       while (true) {
         // bithumb ticker get 요청 무한 반복 , delay 1000ms
-
         const tickers = yield call(API);
         // call 을 사용하면 특정 함수를 호출하고, 결과물이 반환 될 때까지 기다려줄 수 있습니다.
         const editkeyTickers = {};
@@ -154,6 +153,8 @@ export const createBithumbTickersKrw = (SUCCESS, FAIL, API) => {
             if (bithumbCoinInfo[`${key}`]) {
               editkeyTickers[`${key}_KRW`]['korean_name'] =
                 bithumbCoinInfo[`${key}`]['korean_name'];
+            } else {
+              editkeyTickers[`${key}_KRW`]['korean_name'] = `${key}`;
             }
             editkeyTickers[`${key}_KRW`]['initChgRate'] =
               ((tickers.data.data[key]['closing_price'] -

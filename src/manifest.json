@@ -1,8 +1,8 @@
 {
-  "version": "1.0.3",
+  "version": "1.0.4",
   "manifest_version": 3,
-  "name": "코모(COMO) - 가상화폐 거래소 시세 모니터링 (비트코인,이더리움 등)",
-  "description": "업비트, 빗썸 거래소 코인(가상화폐) 시세 조회",
+  "name": "COMO - 가상화폐 거래소 시세 (Bitcoin, Cryptocurrency)",
+  "description": "Upbit, bithumb 거래소 가상화폐 시세 조회",
   "options_page": "options.html",
   "background": { "service_worker": "background.bundle.js" },
   "action": {
