@@ -177,8 +177,6 @@ const CoinList = ({
     }
   };
 
-  // 추가사항 : 고가대비, 저가대비, 그래프 30분봉(50개)
-
   return (
     <tbody>
       {!apiLoading && marketDropDownSelected === 'KRW'

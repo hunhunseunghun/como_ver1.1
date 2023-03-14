@@ -24,8 +24,6 @@ export const ExchangerDropdown = ({
         return upbitLogo;
       case '빗썸':
         return bithumblogo;
-      // case '코인원':
-      //   return coinonelogo;
     }
   };
   return (
@@ -62,18 +60,7 @@ export const ExchangerDropdown = ({
           >
             <img src={bithumblogo} alt="" />
             <div>빗썸</div>
-            
           </div>
-          {/* <div
-            className="dropdownItem"
-            onClick={(e) => {
-              setDropDownSelected(e.target.textContent);
-              setIsAcitve(false);
-            }}
-          >
-            <img src={coinonelogo} alt="" />
-            <div>코인원</div>
-          </div> */}
         </div>
       )}
     </div>
