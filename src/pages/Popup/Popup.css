@@ -53,6 +53,7 @@ nav section:first-child input {
 }
 
 .windowYaxisSize_btn {
+  display: none;
   color: white;
 }
 
@@ -229,7 +230,7 @@ footer {
 table {
   display: block;
   width: 420px;
-  height: 350px;
+  height: 505px;
   box-sizing: border-box;
   overflow-y: scroll;
   background-color: #ffffff;

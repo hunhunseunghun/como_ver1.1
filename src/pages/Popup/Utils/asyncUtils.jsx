@@ -180,6 +180,7 @@ export const createBithumbTickersBtc = (SUCCESS, FAIL, API) => {
       while (true) {
         const tickers = yield call(API);
         const editkeyTickers = {};
+
         for (let key in tickers.data.data) {
           if (key !== 'date') {
             editkeyTickers[`${key}_BTC`] = { ...tickers.data.data[key] };
@@ -188,6 +189,8 @@ export const createBithumbTickersBtc = (SUCCESS, FAIL, API) => {
             if (bithumbCoinInfo[`${key}`]) {
               editkeyTickers[`${key}_BTC`]['korean_name'] =
                 bithumbCoinInfo[`${key}`]['korean_name'];
+            } else {
+              editkeyTickers[`${key}_BTC`]['korean_name'] = `${key}`;
             }
             editkeyTickers[`${key}_BTC`]['initChgRate'] =
               ((tickers.data.data[key]['closing_price'] -
@@ -323,43 +326,42 @@ const createBithumbSocketChannel = (socket, websocketParam, buffer) => {
   }, buffer || buffers.none());
 };
 
-//웹소켓 연결용 사가
-// export const createBithumbWebsocketBufferSaga = (SUCCESS, FAIL) => {
-//   return function* pong() {
-//     const marketNames = yield select((state) => state.Coin.bithumbTickers);
-//     const websocketParam = yield Object.keys(marketNames);
-//     const socket = yield call(createBithumbWebSocket);
-//     const websocketChannel = yield call(
-//       createBithumbSocketChannel,
-//       socket,
-//       websocketParam,
-//       buffers.expanding(1000)
-//     );
+export const createBithumbWebsocketBufferSaga = (SUCCESS, FAIL) => {
+  return function* pong() {
+    const marketNames = yield select((state) => state.Coin.bithumbTickers);
+    const websocketParam = yield Object.keys(marketNames);
+    const socket = yield call(createBithumbWebSocket);
+    const websocketChannel = yield call(
+      createBithumbSocketChannel,
+      socket,
+      websocketParam,
+      buffers.expanding(1000)
+    );
 
-//     try {
-//       while (true) {
-//         // 무한 반복문
-//         const bufferData = yield flush(websocketChannel); // 버퍼 데이터 가져오기
-//         if (bufferData.length) {
-//           const sortedObj = {};
-//           bufferData.forEach((ele) => {
-//             if (ele.content) {
-//               sortedObj[ele.content.symbol] = ele.content;
-//             }
-//           });
+    try {
+      while (true) {
+        // 무한 반복문
+        const bufferData = yield flush(websocketChannel); // 버퍼 데이터 가져오기
+        if (bufferData.length) {
+          const sortedObj = {};
+          bufferData.forEach((ele) => {
+            if (ele.content) {
+              sortedObj[ele.content.symbol] = ele.content;
+            }
+          });
 
-//           yield put({
-//             type: SUCCESS,
-//             payload: sortedObj,
-//           });
-//         }
-//         yield delay(1000); // 1000ms 동안 대기
-//       }
-//     } catch (err) {
-//       console.log('err excuted');
-//       yield put({ type: FAIL, payload: err });
-//     } finally {
-//       websocketChannel.close(); // emit(END) 접근시 소켓 닫기
-//     }
-//   };
-// };
+          yield put({
+            type: SUCCESS,
+            payload: sortedObj,
+          });
+        }
+        yield delay(1000); // 1000ms 동안 대기
+      }
+    } catch (err) {
+      console.log('err excuted');
+      yield put({ type: FAIL, payload: err });
+    } finally {
+      websocketChannel.close(); // emit(END) 접근시 소켓 닫기
+    }
+  };
+};
