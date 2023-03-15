@@ -68,7 +68,7 @@ const Popup = () => {
   return (
     <div className="App">
       <nav>
-        <div className="custom-shape-divider-top-1646706813">
+        {/* <div className="custom-shape-divider-top-1646706813">
           <svg
             data-name="Layer 1"
             xmlns="http://www.w3.org/2000/svg"
@@ -90,7 +90,7 @@ const Popup = () => {
               className="shape-fill"
             ></path>
           </svg>
-        </div>
+        </div> */}
         <section className="nav_top_section">
           <img src={defaultcomologo}></img>
 
@@ -213,9 +213,9 @@ const Popup = () => {
           />
         )}
       </table>
-      <footer>
+      {/* <footer>
         <div>como</div>
-      </footer>
+      </footer> */}
     </div>
   );
 };
