@@ -180,6 +180,7 @@ export const createBithumbTickersBtc = (SUCCESS, FAIL, API) => {
       while (true) {
         const tickers = yield call(API);
         const editkeyTickers = {};
+
         for (let key in tickers.data.data) {
           if (key !== 'date') {
             editkeyTickers[`${key}_BTC`] = { ...tickers.data.data[key] };
@@ -188,6 +189,8 @@ export const createBithumbTickersBtc = (SUCCESS, FAIL, API) => {
             if (bithumbCoinInfo[`${key}`]) {
               editkeyTickers[`${key}_BTC`]['korean_name'] =
                 bithumbCoinInfo[`${key}`]['korean_name'];
+            } else {
+              editkeyTickers[`${key}_BTC`]['korean_name'] = `${key}`;
             }
             editkeyTickers[`${key}_BTC`]['initChgRate'] =
               ((tickers.data.data[key]['closing_price'] -
