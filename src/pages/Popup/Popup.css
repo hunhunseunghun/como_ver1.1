@@ -49,7 +49,7 @@ nav section:first-child input {
 }
 
 .windowXaxisSize_btn {
-  color: white;
+  color: #888383;
 }
 
 .windowYaxisSize_btn {
@@ -58,7 +58,8 @@ nav section:first-child input {
 }
 
 .windowXaxisSize_btn:hover {
-  color: #dadada;
+  /* color: #dadada; */
+  color: black;
   cursor: pointer;
 }
 .windowYaxisSize_btn:hover {
@@ -88,7 +89,8 @@ nav section:last-child div:first-child div:first-child {
   width: 110px;
   height: 15px;
   padding: 2px 4px;
-  border: 1px solid rgb(155, 155, 155);
+  /* border: 1px solid rgb(155, 155, 155); */
+  border: 1px solid rgb(206, 206, 206);
   border-radius: 5px;
   font-size: 11px;
   font-weight: 500;
@@ -131,7 +133,8 @@ nav section:last-child div:first-child div:first-child {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid rgb(155, 155, 155);
+  /* border: 1px solid rgb(155, 155, 155); */
+  border: 1px solid rgb(206, 206, 206);
   border-radius: 5px;
   cursor: pointer;
 }

@@ -9,6 +9,7 @@ export const upbitWebsocketUtil = () => {
         assignObj[key]['change_rate'] = assignObj[key]['change_rate'] * -1;
       }
     }
+    // Todo : 데이터 blink 효과, 가격 up down 변동
 
     return {
       ...state,
@@ -21,9 +22,9 @@ export const upbitWebsocketUtil = () => {
 
 export const setUpbitTickersArrUtil = () => {
   return (state) => {
-    let upbitTickers = { ...state.upbitTickers };
-    let upbitTickersKRW = [];
-    let upbitTickersBTC = [];
+    const upbitTickers = { ...state.upbitTickers };
+    const upbitTickersKRW = [];
+    const upbitTickersBTC = [];
 
     for (let key in upbitTickers) {
       if (upbitTickers[key]['market'].includes('KRW-')) {
@@ -44,8 +45,6 @@ export const setUpbitTickersArrUtil = () => {
 export const bithumbTransactionUtil = (state, action) => {
   const assignedObj = { ...state.bithumbTickers };
 
-  console.log('state', state.bithumbTickers, action.payload, assignedObj);
-
   for (let key in action.payload) {
     if (assignedObj[key] && action.payload[key] !== undefined) {
       assignedObj[key] = Object.assign(assignedObj[key], action.payload[key]);
@@ -62,7 +61,6 @@ export const bithumbTransactionUtil = (state, action) => {
 
 export const bithumbWebsocketUtil = (state, action) => {
   const assignObj = { ...state.bithumbTickers };
-  console.log('bithumbWebsocketUtil excuted', assignObj);
   for (let key in action.payload) {
     // 초기 데이터와 websocket 데이터 병합
     if (assignObj[key]) {
