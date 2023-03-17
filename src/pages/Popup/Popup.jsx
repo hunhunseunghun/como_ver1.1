@@ -4,8 +4,8 @@ import { startInit, startBithumb } from './Reducer/coinReducer.jsx';
 import './Popup.css';
 
 import CoinList from './Components/Upbit/CoinList.jsx';
-import ExchangerDropdown from './Components/Dropdown/ExchangerDropdown';
-import MarketDropDown from './Components/Dropdown/marketDropDown';
+import ExchangerDropdown from './Components/Common/Dropdown/ExchangerDropdown';
+import MarketDropDown from './Components/Common/Dropdown/marketDropDown';
 import BithumbCoinList from './Components/Bithumb/BithumbCoinList.jsx';
 
 import { FaSistrix } from 'react-icons/fa';
