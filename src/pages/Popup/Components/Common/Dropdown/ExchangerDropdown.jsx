@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import upbitLogo from '../../../../assets/img/upbitLogo.png';
-import bithumblogo from '../../../../assets/img/bithumblogo.png';
-import coinonelogo from '../../../../assets/img/coinonelogo.png';
+import upbitLogo from '../../../../../assets/img/upbitLogo.png';
+import bithumblogo from '../../../../../assets/img/bithumblogo.png';
+import coinonelogo from '../../../../../assets/img/coinonelogo.png';
 export const ExchangerDropdown = ({
   dropDownSelected,
   setDropDownSelected,
