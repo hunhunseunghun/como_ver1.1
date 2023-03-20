@@ -213,9 +213,6 @@ const Popup = () => {
           />
         )}
       </table>
-      {/* <footer>
-        <div>como</div>
-      </footer> */}
     </div>
   );
 };
