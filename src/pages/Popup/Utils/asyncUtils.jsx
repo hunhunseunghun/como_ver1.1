@@ -274,7 +274,6 @@ export const createBithumbTransaction = (SUCCESS, FAIL, API) => {
         };
         yield transactionResponse();
 
-        // yield put({ type: SUCCESS, payload: recievedTransaction });
         yield delay(5000);
       }
     } catch (err) {
