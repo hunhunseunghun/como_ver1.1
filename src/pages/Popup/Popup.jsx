@@ -91,6 +91,8 @@ const Popup = () => {
             ></path>
           </svg>
         </div> */}
+        {/* {TODO : nightmode , daymode 추가 요} */}
+
         <section className="nav_top_section">
           <img src={defaultcomologo}></img>
 
