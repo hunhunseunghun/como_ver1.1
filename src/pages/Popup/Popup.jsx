@@ -90,8 +90,7 @@ const Popup = () => {
               className="shape-fill"
             ></path>
           </svg>
-        </div> */}
-        {/* {TODO : nightmode , daymode 추가 요} */}
+  </div> */}
 
         <section className="nav_top_section">
           <img src={defaultcomologo}></img>
