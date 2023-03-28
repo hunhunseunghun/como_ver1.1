@@ -96,7 +96,7 @@ const Popup = () => {
           <img src={defaultcomologo}></img>
 
           <section>
-            <div
+            {/* <div
               className="windowXaxisSize_btn"
               onClick={() => {
                 setWindowYaxisSize(!windowYaxisSize);
@@ -111,7 +111,7 @@ const Popup = () => {
               ) : (
                 <CgArrowLeftR size="20" />
               )}
-            </div>
+            </div> */}
             <div
               className="windowYaxisSize_btn"
               onClick={() => {
