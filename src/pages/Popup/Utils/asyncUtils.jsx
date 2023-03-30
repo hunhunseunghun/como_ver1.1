@@ -364,3 +364,38 @@ export const createBithumbWebsocketBufferSaga = (SUCCESS, FAIL) => {
     }
   };
 };
+
+export const createbTickersBtc = (SUCCESS, FAIL, API) => {
+  return function* () {
+    try {
+      while (true) {
+        const tickers = yield call(API);
+        const editkeyTickers = {};
+
+        for (let key in tickers.data.data) {
+          if (key !== 'date') {
+            editkeyTickers[`${key}_BTC`] = { ...tickers.data.data[key] };
+            editkeyTickers[`${key}_BTC`]['market'] = `${key}_BTC`;
+
+            if (bithumbCoinInfo[`${key}`]) {
+              editkeyTickers[`${key}_BTC`]['korean_name'] =
+                bithumbCoinInfo[`${key}`]['korean_name'];
+            } else {
+              editkeyTickers[`${key}_BTC`]['korean_name'] = `${key}`;
+            }
+            editkeyTickers[`${key}_BTC`]['initChgRate'] =
+              ((tickers.data.data[key]['closing_price'] -
+                tickers.data.data[key]['prev_closing_price']) /
+                tickers.data.data[key]['prev_closing_price']) *
+              100;
+          }
+        }
+        yield put({ type: SUCCESS, payload: editkeyTickers });
+        yield delay(1000);
+      }
+    } catch (err) {
+      yield put({ type: FAIL, payload: err });
+      throw err;
+    }
+  };
+};
