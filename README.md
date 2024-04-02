@@ -12,8 +12,8 @@
 ---
 
 ## Chrome Webstore
-- "https://chrome.google.com/webstore/detail/%EC%BD%94%EB%AA%A8como-%EA%B0%80%EC%83%81%ED%99%94%ED%8F%90-%EA%B1%B0%EB%9E%98%EC%86%8C-%EC%8B%9C%EC%84%B8-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-%EB%B9%84/camiahnljjgndaficdcpboimdbdphnok"
 
+- "https://chrome.google.com/webstore/detail/%EC%BD%94%EB%AA%A8como-%EA%B0%80%EC%83%81%ED%99%94%ED%8F%90-%EA%B1%B0%EB%9E%98%EC%86%8C-%EC%8B%9C%EC%84%B8-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-%EB%B9%84/camiahnljjgndaficdcpboimdbdphnok"
 
 ## :wrench: Skills
 
@@ -45,13 +45,11 @@ DevDependencies
 
 ## Preview
 
-|<img src="./como_gif/COMO_마켓선택.gif"/>|<img src="./como_gif/COMO_거래소.gif"  />|
-|:---:|:---:|
-|KRW / BTC 마켓 지원|업비트 / 빗썸 지원|
-|<img src="./como_gif/COMO_즐겨찾기.gif"/>|<img src="./como_gif/COMO_창확장축소.gif"/>|
-|코인 즐겨찾기|창 확대 / 축소|
-|<img src="./como_gif/COMO_소팅기능.gif"/>|<img src="./como_gif/COMO_검색기능.gif"/>|
-|항목별 내림 / 오름차순 소팅|코인 한글 / 영문 검색|
+| <img src="./como_gif/COMO_거래소.gif" />  | <img src="./como_gif/COMO_마켓선택.gif"/> |
+| :---------------------------------------: | :---------------------------------------: |
+|              KRW / BTC 마켓               |               업비트 / 빗썸               |
+| <img src="./como_gif/COMO_즐겨찾기.gif"/> | <img src="./como_gif/COMO_검색기능.gif"/> |
+|                 즐겨찾기                  |                   검색                    |
 
 ---
 
