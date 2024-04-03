@@ -1,4 +1,4 @@
-# <img src="./src/assets/img/defaultcomologo.png"  width="80" height="80"/> **COMO** **_- Cryptocurrency Monitoring Chrome Extension_**
+# <img src="./src/assets/img/defaultcomologo.png"  width="40" height="40"/> **COMO** **_- Cryptocurrency Monitoring Chrome Extension_**
 
 <p align="center">
 <br>
@@ -8,8 +8,6 @@
 <br>
 가상화폐 시세조회 크롬 익스텐션
 </p>
-
----
 
 ## Chrome Webstore
 
@@ -41,8 +39,6 @@ DevDependencies
 <img alt="Google Chrome" src ="https://img.shields.io/badge/Google Chrome-4285F4.svg?&style=for-the-badge&logo=Google Chrome&logoColor=white"/>
 </p>
 
----
-
 ## Preview
 
 | <img src="./como_gif/COMO_거래소.gif" />  | <img src="./como_gif/COMO_마켓선택.gif"/> |
@@ -50,8 +46,6 @@ DevDependencies
 |              KRW / BTC 마켓               |               업비트 / 빗썸               |
 | <img src="./como_gif/COMO_즐겨찾기.gif"/> | <img src="./como_gif/COMO_검색기능.gif"/> |
 |                 즐겨찾기                  |                   검색                    |
-
----
 
 ## 프로젝트 구조
 
@@ -65,8 +59,6 @@ COMO-Chrome-Extension
       ├─ Reducer            # Redux Reducer를 모아놓고 관리합니다.
       ├─ Utils              # Redux Action의 함수들을 모아놓고 관리합니다.
 ```
-
----
 
 ## Architecture
 
