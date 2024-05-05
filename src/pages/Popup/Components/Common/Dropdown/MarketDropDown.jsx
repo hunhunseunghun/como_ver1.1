@@ -14,7 +14,6 @@ const MarketDropDown = ({
         : null;
     };
     document.addEventListener('click', handleClickOutside);
-    console.log("isActive")
   }, [outsideRef]);
 
   return (
