@@ -18,16 +18,16 @@ export const ExchangerDropdown = ({
     document.addEventListener('click', handleClickOutside);
   }, [outsideRef]);
 
-  // useEffect(() => {
-  //   localStorage.setItem('como_lastest_currency', dropDownSelected);
-  //   const lastestCurrency = localStorage.getItem('como_lastest_currency');
+  useEffect(() => {
+    localStorage.setItem('como_lastest_currency', dropDownSelected);
+    const lastestCurrency = localStorage.getItem('como_lastest_currency');
 
-  //   if (lastestCurrency === '빗썸') {
-  //     setDropDownSelected('빗썸');
+    if (lastestCurrency === '빗썸') {
+      setDropDownSelected('빗썸');
 
-  //     console.log('true: ', lastestCurrency, dropDownSelected);
-  //   }
-  // }, [dropDownSelected]);
+      console.log('true: ', lastestCurrency, dropDownSelected);
+    }
+  }, [dropDownSelected]);
 
   const handleExchangerLogo = () => {
     switch (dropDownSelected) {
