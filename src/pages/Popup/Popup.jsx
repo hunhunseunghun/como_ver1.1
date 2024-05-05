@@ -121,7 +121,6 @@ const Popup = () => {
               type="text"
               placeholder=""
               onChange={(e) => {
-                console.log(e.target.value);
                 setSearchCoinName(e.target.value);
               }}
             />
