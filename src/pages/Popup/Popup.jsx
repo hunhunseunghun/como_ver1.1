@@ -18,11 +18,15 @@ import {
 import defaultcomologo from '../../assets/img/defaultcomologo.png';
 
 const Popup = () => {
+  const lastestCurrency = localStorage.getItem('como_lastest_currency')
+    ? localStorage.getItem('como_lastest_currency')
+    : '업비트';
+  console.log('lastestCurrency : ', lastestCurrency);
   const dispatch = useDispatch();
   const searchInputRef = useRef();
   const [makeSort, setMakeSort] = useState('decending');
   const [sortElement, setSortElement] = useState('trade_price');
-  const [dropDownSelected, setDropDownSelected] = useState('업비트');
+  const [dropDownSelected, setDropDownSelected] = useState(lastestCurrency);
   const [marketDropDownSelected, setmarketDropDownSelected] = useState('KRW');
   const [searchCoinName, setSearchCoinName] = useState('');
   const [windowXaxisSize, setWindowXaxisSize] = useState(false);

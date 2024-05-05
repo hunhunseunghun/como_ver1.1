@@ -20,13 +20,6 @@ export const ExchangerDropdown = ({
 
   useEffect(() => {
     localStorage.setItem('como_lastest_currency', dropDownSelected);
-    const lastestCurrency = localStorage.getItem('como_lastest_currency');
-
-    if (lastestCurrency === '빗썸') {
-      setDropDownSelected('빗썸');
-
-      console.log('true: ', lastestCurrency, dropDownSelected);
-    }
   }, [dropDownSelected]);
 
   const handleExchangerLogo = () => {
