@@ -21,7 +21,7 @@ const Popup = () => {
   const lastestCurrency = localStorage.getItem('como_lastest_currency')
     ? localStorage.getItem('como_lastest_currency')
     : '업비트';
-  console.log('lastestCurrency : ', lastestCurrency);
+
   const dispatch = useDispatch();
   const searchInputRef = useRef();
   const [makeSort, setMakeSort] = useState('decending');
