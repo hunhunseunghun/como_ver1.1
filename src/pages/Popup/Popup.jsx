@@ -38,11 +38,7 @@ const Popup = () => {
   }, [dispatch]);
 
   const windowResize = () => {
-    document.body.clientHeight(500);
-    switch (windowXaxisSize) {
-      case true:
-        return;
-    }
+    document.body.style.height = '500px';
   };
 
   const handleSortPrice = () => {
@@ -77,35 +73,34 @@ const Popup = () => {
 
           <section>
             <div
-              className="windowXaxisSize_btn"
+              className="windowYaxisSize_btn"
               onClick={() => {
                 setWindowYaxisSize(!windowYaxisSize);
-                windowResize();
+                // windowResize();
               }}
               data-tip
-              data-for="windowXaxisSize_btn_tooltip"
+              data-for="windowYaxisSize_btn_tooltip"
               title={`창 세로 ${windowYaxisSize ? '축소' : '확대'}`}
             >
               {windowYaxisSize ? (
-                <CgArrowRightR size="20" />
+                <CgArrowUpR size="20" />
               ) : (
-                <CgArrowLeftR size="20" />
+                <CgArrowDownR size="20" />
               )}
             </div>
             <div
-              className="windowYaxisSize_btn"
+              className="windowXaxisSize_btn"
               onClick={() => {
                 setWindowXaxisSize(!windowXaxisSize);
-                windowResize();
               }}
               data-tip
               data-="windowXaxisSize_btn_tooltip"
               title={`창 가로 ${windowXaxisSize ? '축소' : '확대'}`}
             >
               {windowXaxisSize ? (
-                <CgArrowUpR size="20" />
+                <CgArrowRightR size="20" />
               ) : (
-                <CgArrowDownR size="20" />
+                <CgArrowLeftR size="20" />
               )}
             </div>
           </section>
