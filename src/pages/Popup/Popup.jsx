@@ -21,6 +21,12 @@ const Popup = () => {
   const lastestCurrency = localStorage.getItem('como_lastest_currency')
     ? localStorage.getItem('como_lastest_currency')
     : '업비트';
+  const lastestXwideState = localStorage.getItem('como_lastest_xwide')
+    ? localStorage.getItem('como_lastest_xwide')
+    : false;
+  const lastestYwideState = localStorage.getItem('como_lastest_ywide')
+    ? localStorage.getItem('como_lastest_ywide')
+    : false;
 
   const dispatch = useDispatch();
   const searchInputRef = useRef();
@@ -29,8 +35,8 @@ const Popup = () => {
   const [dropDownSelected, setDropDownSelected] = useState(lastestCurrency);
   const [marketDropDownSelected, setmarketDropDownSelected] = useState('KRW');
   const [searchCoinName, setSearchCoinName] = useState('');
-  const [windowXaxisSize, setWindowXaxisSize] = useState(false);
-  const [windowYaxisSize, setWindowYaxisSize] = useState(false);
+  const [windowXaxisSize, setWindowXaxisSize] = useState(lastestXwideState);
+  const [windowYaxisSize, setWindowYaxisSize] = useState(lastestYwideState);
 
   useEffect(() => {
     dispatch(startInit());
@@ -39,6 +45,7 @@ const Popup = () => {
 
   const windowResize = () => {
     document.body.style.height = '500px';
+    console.log('windowYaxisSize : ', windowYaxisSize);
   };
 
   const handleSortPrice = () => {
@@ -76,7 +83,7 @@ const Popup = () => {
               className="windowYaxisSize_btn"
               onClick={() => {
                 setWindowYaxisSize(!windowYaxisSize);
-                // windowResize();
+                windowResize();
               }}
               data-tip
               data-for="windowYaxisSize_btn_tooltip"
