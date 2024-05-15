@@ -28,8 +28,6 @@ const Popup = () => {
     localStorage.getItem('como_lastest_ywide') === 'true'
       ? localStorage.getItem('como_lastest_ywide')
       : false;
-  console.log('lastestXwideState:', lastestXwideState);
-  console.log('lastestYwideState:', lastestYwideState);
 
   const dispatch = useDispatch();
   const searchInputRef = useRef();
