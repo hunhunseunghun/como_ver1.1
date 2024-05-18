@@ -9,6 +9,8 @@ import MarketDropDown from './Components/Common/Dropdown/marketDropDown';
 import BithumbCoinList from './Components/Bithumb/BithumbCoinList.jsx';
 
 import { FaSistrix } from 'react-icons/fa';
+import { FiStar } from 'react-icons/fi';
+import { AiFillStar } from 'react-icons/ai';
 import {
   CgArrowDownR,
   CgArrowUpR,
@@ -38,6 +40,7 @@ const Popup = () => {
   const [searchCoinName, setSearchCoinName] = useState('');
   const [windowXaxisSize, setWindowXaxisSize] = useState(lastestXwideState);
   const [windowYaxisSize, setWindowYaxisSize] = useState(lastestYwideState);
+  const [favoriteFnActive, setFavoriteFnActive] = useState(true);
 
   useEffect(() => {
     dispatch(startInit());
@@ -81,6 +84,21 @@ const Popup = () => {
           <img src={defaultcomologo}></img>
 
           <section>
+            <div
+              className={
+                favoriteFnActive
+                  ? 'favorites_btn favorites_fn_active'
+                  : 'favorites_btn favorites_fn_unactive'
+              }
+              onClick={() => {
+                setFavoriteFnActive(!favoriteFnActive);
+              }}
+              data-tip
+              data-for="favorites_btn_tooltip"
+              title={`즐겨찾기 ${favoriteFnActive ? '비활성화' : '활성화'}`}
+            >
+              {favoriteFnActive ? <AiFillStar /> : <FiStar />}
+            </div>
             <div
               className="windowYaxisSize_btn"
               onClick={() => {
