@@ -88,7 +88,7 @@ const Popup = () => {
               className={
                 favoriteFnActive
                   ? 'favorites_btn favorites_fn_active'
-                  : 'favorites_btn favorites_fn_unactive'
+                  : 'favorites_btn favorites_fn_inactive'
               }
               onClick={() => {
                 setFavoriteFnActive(!favoriteFnActive);
@@ -205,6 +205,7 @@ const Popup = () => {
             makeSort={makeSort}
             sortElement={sortElement}
             searchCoinName={searchCoinName}
+            favoriteFnActive={favoriteFnActive}
           />
         )}
         {dropDownSelected === '빗썸' && (
@@ -213,6 +214,7 @@ const Popup = () => {
             makeSort={makeSort}
             sortElement={sortElement}
             searchCoinName={searchCoinName}
+            favoriteFnActive={favoriteFnActive}
           />
         )}
       </table>
