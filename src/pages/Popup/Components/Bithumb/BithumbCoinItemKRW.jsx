@@ -8,6 +8,7 @@ const BithumbCoinItemKRW = ({
   setMarkedCoinKRW,
   switchColorHandler,
   localStorageDataKRW,
+  favoriteFnActive,
 }) => {
   const [isMarked, setIsMarked] = useState(false);
 
@@ -67,14 +68,18 @@ const BithumbCoinItemKRW = ({
             </div>
           </div>
         </section>
-        <section
-          className={
-            isMarked ? 'coinItemsMarked markedIcon' : 'coinItemsMarked'
-          }
-          onClick={handleMarkedCoin}
-        >
-          {isMarked ? <AiFillStar /> : <FiStar />}
-        </section>
+        {favoriteFnActive ? (
+          <section
+            className={
+              isMarked ? 'coinItemsMarked markedIcon' : 'coinItemsMarked'
+            }
+            onClick={handleMarkedCoin}
+          >
+            {isMarked ? <AiFillStar /> : <FiStar />}
+          </section>
+        ) : (
+          <div></div>
+        )}
       </td>
 
       <td

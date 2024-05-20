@@ -8,6 +8,7 @@ const BithumbCoinItemBTC = ({
   setMarkedCoinBTC,
   switchColorHandler,
   localStorageDataBTC,
+  favoriteFnActive,
 }) => {
   const [isMarked, setIsMarked] = useState(false);
 
@@ -27,14 +28,14 @@ const BithumbCoinItemBTC = ({
       const marked = [...markedCoinBTC, ticker.market];
       setMarkedCoinBTC(marked);
       setIsMarked(true);
-      console.log("ismared",isMarked)
+      console.log('ismared', isMarked);
       localStorage.setItem('isBithumbMarkedCoinBTC', JSON.stringify(marked)); //즐겨찾기 데이터 로컬스토리지 사용(새로고침해도 유지 )
     } else {
       const marked = [...markedCoinBTC];
       marked.splice([...markedCoinBTC].indexOf(ticker.market), 1);
       setMarkedCoinBTC(marked);
       setIsMarked(false);
-      console.log("ismarked",isMarked)
+      console.log('ismarked', isMarked);
       localStorage.setItem('isBithumbMarkedCoinBTC', JSON.stringify(marked));
     }
   };
@@ -77,14 +78,19 @@ const BithumbCoinItemBTC = ({
             </div>
           </div>
         </section>
-        <section
-          className={
-            isMarked ? 'coinItemsMarked markedIcon' : 'coinItemsMarked'
-          }
-          onClick={handleMarkedCoin}
-        >
-          {isMarked ? <AiFillStar /> : <FiStar />}
-        </section>
+
+        {favoriteFnActive ? (
+          <section
+            className={
+              isMarked ? 'coinItemsMarked markedIcon' : 'coinItemsMarked'
+            }
+            onClick={handleMarkedCoin}
+          >
+            {isMarked ? <AiFillStar /> : <FiStar />}
+          </section>
+        ) : (
+          <div></div>
+        )}
       </td>
 
       <td
@@ -116,7 +122,9 @@ const BithumbCoinItemBTC = ({
         <div>{ticker.chgRate ? ticker.chgRate : chgRateHandler() + '%'}</div>
         <div>{chgPriceHandler()}</div>
       </td>
-      <td className="coinTransactionamount">{Number(ticker.acc_trade_price_24h).toFixed(4)}</td>
+      <td className="coinTransactionamount">
+        {Number(ticker.acc_trade_price_24h).toFixed(4)}
+      </td>
     </tr>
   );
 };

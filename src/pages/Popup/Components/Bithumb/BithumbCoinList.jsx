@@ -189,6 +189,7 @@ const BithumbCoinList = ({
                 setMarkedCoinKRW={setMarkedCoinKRW}
                 switchColorHandler={switchColorHandler}
                 localStorageDataKRW={localStorageDataKRW}
+                favoriteFnActive={favoriteFnActive}
               />
             );
           })
@@ -201,6 +202,7 @@ const BithumbCoinList = ({
                 setMarkedCoinBTC={setMarkedCoinBTC}
                 switchColorHandler={switchColorHandler}
                 localStorageDataBTC={localStorageDataBTC}
+                favoriteFnActive={favoriteFnActive}
               />
             );
           })}

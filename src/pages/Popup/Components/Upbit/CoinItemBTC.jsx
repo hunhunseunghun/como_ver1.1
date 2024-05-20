@@ -9,6 +9,7 @@ const CoinItemBTC = ({
   markedCoinBTC,
   setMarkedCoinBTC,
   localStorageDataBTC,
+  favoriteFnActive,
 }) => {
   const [isMarked, setIsMarked] = useState(false);
 
@@ -57,14 +58,18 @@ const CoinItemBTC = ({
           </div>
         </section>
 
-        <section
-          className={
-            isMarked ? 'coinItemsMarked markedIcon' : 'coinItemsMarked'
-          }
-          onClick={handleMarkedCoin}
-        >
-          {isMarked ? <AiFillStar /> : <FiStar />}
-        </section>
+        {favoriteFnActive ? (
+          <section
+            className={
+              isMarked ? 'coinItemsMarked markedIcon' : 'coinItemsMarked'
+            }
+            onClick={handleMarkedCoin}
+          >
+            {isMarked ? <AiFillStar /> : <FiStar />}
+          </section>
+        ) : (
+          <div></div>
+        )}
       </td>
       <td className={switchColorHandler(ticker.change)}>
         <div>{ticker.trade_price.toFixed(8)}</div>

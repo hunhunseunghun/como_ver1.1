@@ -195,6 +195,7 @@ const CoinList = ({
                 markedCoinKRW={markedCoinKRW}
                 setMarkedCoinKRW={setMarkedCoinKRW}
                 localStorageDataKRW={localStorageDataKRW}
+                favoriteFnActive={favoriteFnActive}
               />
             );
           })
@@ -208,6 +209,7 @@ const CoinList = ({
                 markedCoinBTC={markedCoinBTC}
                 setMarkedCoinBTC={setMarkedCoinBTC}
                 localStorageDataBTC={localStorageDataBTC}
+                favoriteFnActive={favoriteFnActive}
               />
             );
           })}
