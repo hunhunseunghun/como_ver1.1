@@ -1,6 +1,6 @@
 {
   "name": "COMO-가상화폐 시세 비트코인(Bitcoin&Cryptocurrencies)",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Upbit, Bithumb 거래소 암호화폐 시세 조회",
   "repository": {
     "type": "git",
