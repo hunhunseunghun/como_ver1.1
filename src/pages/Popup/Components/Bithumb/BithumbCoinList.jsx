@@ -111,22 +111,24 @@ const BithumbCoinList = ({
       //BTC 데이터 배열 핸들링
       const markedArrBTC = [];
 
-      // 코인데이터 배열 즐겨찾기된 요소 추출
-      markedCoinBTC.map((coinName) => {
-        const filteredCoin = bithumbTickersBtcArr.filter(
-          (coin) => coin.market === coinName
-        );
-        markedArrBTC.push(filteredCoin[0]);
-      });
-
-      // 코인데이터 배열 즐겨찾기된 요소 삭제
-      markedCoinBTC.forEach((coinName) => {
-        bithumbTickersBtcArr.forEach((ele, idx) => {
-          if (ele.market === coinName) {
-            delete bithumbTickersBtcArr[idx];
-          }
+      if (favoriteFnActive) {
+        // 코인데이터 배열 즐겨찾기된 요소 추출
+        markedCoinBTC.map((coinName) => {
+          const filteredCoin = bithumbTickersBtcArr.filter(
+            (coin) => coin.market === coinName
+          );
+          markedArrBTC.push(filteredCoin[0]);
         });
-      });
+
+        // 코인데이터 배열 즐겨찾기된 요소 삭제
+        markedCoinBTC.forEach((coinName) => {
+          bithumbTickersBtcArr.forEach((ele, idx) => {
+            if (ele.market === coinName) {
+              delete bithumbTickersBtcArr[idx];
+            }
+          });
+        });
+      }
 
       //empty값 삭제
       const deleteBooleanBTC = bithumbTickersBtcArr.filter(Boolean);

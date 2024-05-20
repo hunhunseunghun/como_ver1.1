@@ -90,22 +90,24 @@ const CoinList = ({
       //BTC 데이터 배열 핸들링
       const markedArrBTC = [];
 
-      // 코인데이터 배열 즐겨찾기된 요소 추출
-      markedCoinBTC.map((coinName) => {
-        const filteredCoin = upbitTickersArrBTC.filter(
-          (coin) => coin.market === coinName
-        );
-        markedArrBTC.push(filteredCoin[0]);
-      });
-
-      // 코인데이터 배열 즐겨찾기된 요소 삭제
-      markedCoinBTC.forEach((coinName) => {
-        upbitTickersArrBTC.forEach((ele, idx) => {
-          if (ele.market === coinName) {
-            delete upbitTickersArrBTC[idx];
-          }
+      if (favoriteFnActive) {
+        // 코인데이터 배열 즐겨찾기된 요소 추출
+        markedCoinBTC.map((coinName) => {
+          const filteredCoin = upbitTickersArrBTC.filter(
+            (coin) => coin.market === coinName
+          );
+          markedArrBTC.push(filteredCoin[0]);
         });
-      });
+
+        // 코인데이터 배열 즐겨찾기된 요소 삭제
+        markedCoinBTC.forEach((coinName) => {
+          upbitTickersArrBTC.forEach((ele, idx) => {
+            if (ele.market === coinName) {
+              delete upbitTickersArrBTC[idx];
+            }
+          });
+        });
+      }
 
       //empty값 삭제
       const deleteBooleanBTC = upbitTickersArrBTC.filter(Boolean);
