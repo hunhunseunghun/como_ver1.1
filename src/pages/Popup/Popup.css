@@ -46,9 +46,10 @@ nav section:first-child input {
 }
 .nav_top_section button {
   border: none;
+  padding: 0px;
 }
 .nav_top_section img {
-  width: 25px;
+  width: 30px;
 }
 
 .favorites_btn {
