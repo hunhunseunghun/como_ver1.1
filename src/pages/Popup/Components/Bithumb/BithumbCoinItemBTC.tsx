@@ -5,21 +5,22 @@ import { AiFillStar } from 'react-icons/ai';
 interface Ticker {
   market: string;
   korean_name: string;
-  trade_price: number;
   closePrice?: number;
   prevClosePrice?: number;
   closing_price?: number;
   prev_closing_price?: number;
   chgRate?: number;
+  trade_price: number;
   acc_trade_price_24h: number;
 }
 
 interface BithumbCoinItemBTCProps {
   ticker: Ticker;
   markedCoinBTC: string[];
-  setMarkedCoinBTC: (markedCoins: string[]) => void;
+  setMarkedCoinBTC: (marked: string[]) => void;
   switchColorHandler: (chgRate: number | string) => string;
   localStorageDataBTC: string[];
+  favoriteFnActive: boolean;
 }
 
 const BithumbCoinItemBTC: React.FC<BithumbCoinItemBTCProps> = ({
@@ -28,6 +29,7 @@ const BithumbCoinItemBTC: React.FC<BithumbCoinItemBTCProps> = ({
   setMarkedCoinBTC,
   switchColorHandler,
   localStorageDataBTC,
+  favoriteFnActive,
 }) => {
   const [isMarked, setIsMarked] = useState<boolean>(false);
 
@@ -40,14 +42,14 @@ const BithumbCoinItemBTC: React.FC<BithumbCoinItemBTCProps> = ({
     }
   }, [localStorageDataBTC, ticker.market]);
 
-  const handleMarkedCoin = (): void => {
+  const handleMarkedCoin = () => {
     if (!isMarked) {
       const marked = [...markedCoinBTC, ticker.market];
       setMarkedCoinBTC(marked);
       setIsMarked(true);
       localStorage.setItem('isBithumbMarkedCoinBTC', JSON.stringify(marked));
     } else {
-      const marked = markedCoinBTC.filter((coin) => coin !== ticker.market);
+      const marked = markedCoinBTC.filter((item) => item !== ticker.market);
       setMarkedCoinBTC(marked);
       setIsMarked(false);
       localStorage.setItem('isBithumbMarkedCoinBTC', JSON.stringify(marked));
@@ -55,37 +57,31 @@ const BithumbCoinItemBTC: React.FC<BithumbCoinItemBTCProps> = ({
   };
 
   const chgPriceHandler = (): number | string => {
-    if (ticker.closePrice !== undefined && ticker.prevClosePrice !== undefined) {
-      return Math.abs(ticker.closePrice - ticker.prevClosePrice) > 100
-        ? ticker.closePrice - ticker.prevClosePrice
-        : (ticker.closePrice - ticker.prevClosePrice).toFixed(7);
-    } else if (
-      ticker.closing_price !== undefined &&
-      ticker.prev_closing_price !== undefined
-    ) {
-      return Math.abs(ticker.closing_price - ticker.prev_closing_price) > 100
-        ? ticker.closing_price - ticker.prev_closing_price
-        : (ticker.closing_price - ticker.prev_closing_price).toFixed(7);
+    if (ticker.closePrice && ticker.prevClosePrice) {
+      if (Math.abs(ticker.closePrice - ticker.prevClosePrice) > 100) {
+        return ticker.closePrice - ticker.prevClosePrice;
+      } else {
+        return (ticker.closePrice - ticker.prevClosePrice).toFixed(7);
+      }
+    } else if (ticker.closing_price && ticker.prev_closing_price) {
+      if (Math.abs(ticker.closing_price - ticker.prev_closing_price) > 100) {
+        return ticker.closing_price - ticker.prev_closing_price;
+      } else {
+        return (ticker.closing_price - ticker.prev_closing_price).toFixed(7);
+      }
     }
-    return 'N/A';
+    return '0';
   };
 
-  const chgRateHandler = (): string => {
-    if (ticker.prev_closing_price === 0) {
-      return '0';
-    } else if (
-      ticker.closing_price !== undefined &&
-      ticker.prev_closing_price !== undefined
-    ) {
+  const chgRateHandler = (): number | string => {
+    if (ticker.prev_closing_price && ticker.prev_closing_price !== 0) {
       return (
-        (
-          ((ticker.closing_price - ticker.prev_closing_price) /
-            ticker.prev_closing_price) *
-          100
-        ).toFixed(2) + '%'
-      );
+        ((ticker.closing_price! - ticker.prev_closing_price) /
+          ticker.prev_closing_price) *
+        100
+      ).toFixed(2);
     }
-    return 'N/A';
+    return '0';
   };
 
   return (
@@ -99,14 +95,19 @@ const BithumbCoinItemBTC: React.FC<BithumbCoinItemBTCProps> = ({
             </div>
           </div>
         </section>
-        <section
-          className={
-            isMarked ? 'coinItemsMarked markedIcon' : 'coinItemsMarked'
-          }
-          onClick={handleMarkedCoin}
-        >
-          {isMarked ? <AiFillStar /> : <FiStar />}
-        </section>
+
+        {favoriteFnActive ? (
+          <section
+            className={
+              isMarked ? 'coinItemsMarked markedIcon' : 'coinItemsMarked'
+            }
+            onClick={handleMarkedCoin}
+          >
+            {isMarked ? <AiFillStar /> : <FiStar />}
+          </section>
+        ) : (
+          <div></div>
+        )}
       </td>
 
       <td
@@ -135,7 +136,7 @@ const BithumbCoinItemBTC: React.FC<BithumbCoinItemBTCProps> = ({
               ) + ' coinItemsRate'
         }
       >
-        <div>{ticker.chgRate ? ticker.chgRate : chgRateHandler()}</div>
+        <div>{ticker.chgRate ? ticker.chgRate : chgRateHandler() + '%'}</div>
         <div>{chgPriceHandler()}</div>
       </td>
       <td className="coinTransactionamount">
