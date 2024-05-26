@@ -5,7 +5,6 @@
 nav {
   display: flex;
   flex-direction: column;
-
   padding: 5px;
   border-bottom: 1px solid rgb(229, 229, 229);
 }
@@ -256,14 +255,14 @@ footer {
 table {
   display: block;
   width: 420px;
-  height: 505px;
+  height: 350px;
   box-sizing: border-box;
   overflow-y: scroll;
   background-color: #ffffff;
 }
 
 .table_Y_wide {
-  height: 800px;
+  height: 500px;
 }
 .table_X_wide {
   width: 700px;
