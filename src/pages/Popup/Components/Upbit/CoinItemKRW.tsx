@@ -2,7 +2,27 @@ import React, { useEffect, useState } from 'react';
 import { FiStar } from 'react-icons/fi';
 import { AiFillStar } from 'react-icons/ai';
 
-const CoinItemKRW = ({
+interface CoinItemKRWProps {
+  ticker: Ticker;
+  switchColorHandler: (change: number) => string;
+  switchPriceOpeatorHandler: (change: number) => string;
+  markedCoinKRW: string[];
+  setMarkedCoinKRW: React.Dispatch<React.SetStateAction<string[]>>;
+  localStorageDataKRW: string[];
+  favoriteFnActive: boolean;
+}
+
+interface Ticker {
+  market: string;
+  korean_name: string;
+  trade_price: number;
+  change: number;
+  change_rate: number;
+  change_price: number;
+  acc_trade_price_24h: number;
+}
+
+const CoinItemKRW: React.FC<CoinItemKRWProps> = ({
   ticker,
   switchColorHandler,
   switchPriceOpeatorHandler,
@@ -11,45 +31,34 @@ const CoinItemKRW = ({
   localStorageDataKRW,
   favoriteFnActive,
 }) => {
-  const [isMarked, setIsMarked] = useState(false);
-  const [isAlarmselected, setIsAlarmselected] = useState(false); // for alram state
-
-  useEffect(() => {
-    //로컬스토리지 즐겨찾기 배열 데이터에서 해당요소 확인 (마켓이름 사용)
-    const confirmMarkedTicker = localStorageDataKRW.filter(
-      (ele) => ele === ticker.market
-    );
-    if (localStorageDataKRW.length > 0 && confirmMarkedTicker.length > 0) {
-      setIsMarked(true);
-    }
-  }, [localStorageDataKRW]);
+  const [isMarked, setIsMarked] = useState<boolean>(
+    localStorageDataKRW.includes(ticker.market)
+  );
 
   const handleMarkedCoin = () => {
-    //즐겨찾기 배열 데이터 추가, 삭제
-    if (isMarked === false) {
-      const marked = [...markedCoinKRW, ticker.market];
-      setMarkedCoinKRW(marked);
-      setIsMarked(true);
-      localStorage.setItem('isMarkedCoinKRW', JSON.stringify(marked)); //즐겨찾기 데이터 로컬스토리지 사용(새로고침해도 유지 )
-    } else {
-      const marked = [...markedCoinKRW];
-      marked.splice([...markedCoinKRW].indexOf(ticker.market), 1);
-      setMarkedCoinKRW(marked);
-      setIsMarked(false);
-      localStorage.setItem('isMarkedCoinKRW', JSON.stringify(marked));
-    }
+    // 즐겨찾기 배열 데이터 추가, 삭제
+    const updatedMarkedCoinKRW = isMarked
+      ? markedCoinKRW.filter((market) => market !== ticker.market)
+      : [...markedCoinKRW, ticker.market];
+
+    setMarkedCoinKRW(updatedMarkedCoinKRW);
+    setIsMarked(!isMarked);
+    localStorage.setItem(
+      'isMarkedCoinKRW',
+      JSON.stringify(updatedMarkedCoinKRW)
+    ); // 즐겨찾기 데이터 로컬스토리지
   };
 
   return (
-    <tr key={`${ticker.market}`}>
+    <tr>
       <td className="coinItemsName">
         <section>
           <img
             src={`https://static.upbit.com/logos/${
               ticker.market.split('-')[1]
             }.png`}
+            alt={ticker.korean_name}
           />
-
           <div>
             <div>{ticker.korean_name}</div>
             {/* TODO: 코인 네임 클릭시, link 리다이렉션 필요 */}
@@ -60,7 +69,7 @@ const CoinItemKRW = ({
             </div>
           </div>
         </section>
-        {favoriteFnActive ? (
+        {favoriteFnActive && (
           <section
             className={
               isMarked ? 'coinItemsMarked markedIcon' : 'coinItemsMarked'
@@ -69,8 +78,6 @@ const CoinItemKRW = ({
           >
             {isMarked ? <AiFillStar /> : <FiStar />}
           </section>
-        ) : (
-          <div></div>
         )}
       </td>
       <td className={`${switchColorHandler(ticker.change)}`}>
@@ -85,15 +92,14 @@ const CoinItemKRW = ({
         </div>
         <div>
           {switchPriceOpeatorHandler(ticker.change)}
-          {ticker.change_price}
+          {ticker.change_price.toLocaleString()}
         </div>
       </td>
       <td>
         <div className="coinTransactionamount">
           {(ticker.acc_trade_price_24h / 1000000)
             .toFixed()
-            .toString()
-            .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
           {' 백만'}
         </div>
       </td>
