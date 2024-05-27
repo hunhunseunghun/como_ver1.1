@@ -46,7 +46,7 @@ const CoinItemKRW: React.FC<CoinItemKRWProps> = ({
     localStorage.setItem(
       'isMarkedCoinKRW',
       JSON.stringify(updatedMarkedCoinKRW)
-    ); // 즐겨찾기 데이터 로컬스토리지
+    ); // 즐겨찾기 데이터 로컬스토리지 사용
   };
 
   return (

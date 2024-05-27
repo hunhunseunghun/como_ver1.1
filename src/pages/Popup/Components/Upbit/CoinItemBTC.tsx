@@ -2,7 +2,29 @@ import React, { useEffect, useState } from 'react';
 import { FiStar } from 'react-icons/fi';
 import { AiFillStar } from 'react-icons/ai';
 
-const CoinItemBTC = ({
+// Props 타입 정의
+interface CoinItemBTCProps {
+  ticker: Ticker;
+  switchColorHandler: (change: number) => string;
+  switchPriceOpeatorHandler: (change: number) => string;
+  markedCoinBTC: string[];
+  setMarkedCoinBTC: React.Dispatch<React.SetStateAction<string[]>>;
+  localStorageDataBTC: string[];
+  favoriteFnActive: boolean;
+}
+
+// Ticker 타입 정의
+interface Ticker {
+  market: string;
+  korean_name: string;
+  trade_price: number;
+  change: number;
+  change_rate: number;
+  change_price: number;
+  acc_trade_price_24h: number;
+}
+
+const CoinItemBTC: React.FC<CoinItemBTCProps> = ({
   ticker,
   switchColorHandler,
   switchPriceOpeatorHandler,
@@ -11,42 +33,39 @@ const CoinItemBTC = ({
   localStorageDataBTC,
   favoriteFnActive,
 }) => {
-  const [isMarked, setIsMarked] = useState(false);
+  const [isMarked, setIsMarked] = useState<boolean>(
+    localStorageDataBTC.includes(ticker.market)
+  );
 
   useEffect(() => {
-    //로컬스토리지 즐겨찾기 배열 데이터에서 해당요소 확인 (마켓이름 사용)
-    const confirmMarkedTicker = localStorageDataBTC.filter(
-      (ele) => ele === ticker.market
-    );
-    if (localStorageDataBTC.length > 0 && confirmMarkedTicker.length > 0) {
+    // 로컬스토리지 즐겨찾기 배열 데이터에서 해당 요소 확인 (마켓이름 사용)
+    if (localStorageDataBTC.includes(ticker.market)) {
       setIsMarked(true);
     }
-  }, [localStorageDataBTC]);
+  }, [localStorageDataBTC, ticker.market]);
 
   const handleMarkedCoin = () => {
-    //즐겨찾기 배열 데이터 추가, 삭제
-    if (isMarked === false) {
-      const marked = [...markedCoinBTC, ticker.market];
-      setMarkedCoinBTC(marked);
-      setIsMarked(true);
-      localStorage.setItem('isMarkedCoinBTC', JSON.stringify(marked)); //즐겨찾기 데이터 로컬스토리지 사용(새로고침해도 유지 )
-    } else {
-      const marked = [...markedCoinBTC];
-      marked.splice([...markedCoinBTC].indexOf(ticker.market), 1);
-      setMarkedCoinBTC(marked);
-      setIsMarked(false);
-      localStorage.setItem('isMarkedCoinBTC', JSON.stringify(marked));
-    }
+    const updatedMarkedCoinBTC = isMarked
+      ? markedCoinBTC.filter((market) => market !== ticker.market)
+      : [...markedCoinBTC, ticker.market];
+
+    setMarkedCoinBTC(updatedMarkedCoinBTC);
+    setIsMarked(!isMarked);
+    localStorage.setItem(
+      'isMarkedCoinBTC',
+      JSON.stringify(updatedMarkedCoinBTC)
+    ); // 즐겨찾기 데이터 로컬스토리지 사용(새로고침해도 유지)
   };
 
   return (
-    <tr key={`${ticker.market}`}>
+    <tr>
       <td className="coinItemsName">
         <section>
           <img
             src={`https://static.upbit.com/logos/${
               ticker.market.split('-')[1]
             }.png`}
+            alt={ticker.korean_name}
           />
           <div>
             <div>{ticker.korean_name}</div>
@@ -57,8 +76,7 @@ const CoinItemBTC = ({
             </div>
           </div>
         </section>
-
-        {favoriteFnActive ? (
+        {favoriteFnActive && (
           <section
             className={
               isMarked ? 'coinItemsMarked markedIcon' : 'coinItemsMarked'
@@ -67,8 +85,6 @@ const CoinItemBTC = ({
           >
             {isMarked ? <AiFillStar /> : <FiStar />}
           </section>
-        ) : (
-          <div></div>
         )}
       </td>
       <td className={switchColorHandler(ticker.change)}>
