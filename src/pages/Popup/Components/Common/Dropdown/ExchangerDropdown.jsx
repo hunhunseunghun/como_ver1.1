@@ -20,7 +20,6 @@ export const ExchangerDropdown = ({
 
   useEffect(() => {
     localStorage.setItem('como_lastest_currency', dropDownSelected);
-    console.log(isActive);
   }, [dropDownSelected]);
 
   const handleExchangerLogo = () => {
