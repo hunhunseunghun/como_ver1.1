@@ -42,7 +42,8 @@ const Popup: React.FC = () => {
     sortOrder: 'descending',
     sortField: 'trade_price',
     selectedCurrency:
-      (localStorage.getItem('como_lastest_currency') as Currency) || '업비트',
+      (localStorage.getItem('como_lastest_currency') as Currency | null) ??
+      '업비트',
     selectedMarket: 'KRW',
     searchTerm: '',
     isWideX: localStorage.getItem('como_lastest_xwide') === 'true',
