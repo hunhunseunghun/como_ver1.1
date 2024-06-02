@@ -82,7 +82,6 @@ const createSocketChannel = (socket, websocketParam, buffer) => {
 
     const unsubscribe = () => {
       socket.close();
-      state.Coin;
     };
 
     return unsubscribe;
