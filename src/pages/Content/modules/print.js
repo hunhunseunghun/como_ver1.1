@@ -1,3 +1,4 @@
-export const printLine = (line) => {
-  console.log('===> FROM THE PRINT MODULE:', line);
+// modules/print.js
+module.exports.printLine = function (message) {
+  console.log(message);
 };

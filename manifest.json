@@ -3,11 +3,10 @@
   "manifest_version": 3,
   "name": "COMO-가상화폐 시세 비트코인(Bitcoin&Cryptocurrencies)",
   "description": "Upbit, Bithumb 거래소 암호화폐 시세 조회",
-  "options_page": "options.html",
-  "background": { "service_worker": "background.bundle.js" },
+  "options_page": "src/pages/Options/index.html",
+  "background": { "service_worker": "src/pages/Background/index.js" },
   "action": {
-    "default_popup": "popup.html",
-    "default_icon": "defaultcomologo.png"
+    "default_popup": "src/pages/Popup/index.html"
   },
   "commands": {
     "_execute_action": {
@@ -19,16 +18,16 @@
     }
   },
   "icons": {
-    "16": "defaultcomologo.png",
-    "32": "defaultcomologo.png",
-    "48": "defaultcomologo.png",
-    "128": "defaultcomologo.png"
+    "16": "/assets/img/defaultcomologo.png",
+    "32": "/assets/img/defaultcomologo.png",
+    "48": "/assets/img/defaultcomologo.png",
+    "128": "/assets/img/defaultcomologo.png"
   },
   "content_scripts": [
     {
-      "matches": ["http://*/*", "https://*/*", "<all_urls>"],
-      "js": ["contentScript.bundle.js"],
-      "css": ["content.styles.css"]
+      "matches": ["<all_urls>"],
+      "js": ["src/pages/Content/index.js"],
+      "css": ["src/pages/Content/content.styles.css"]
     }
   ],
   "web_accessible_resources": [
