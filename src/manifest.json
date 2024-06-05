@@ -6,7 +6,7 @@
   "options_page": "options.html",
   "background": { "service_worker": "background.bundle.js" },
   "action": {
-    "default_popup": "popup.html",
+    "default_popup": "pages/Popup/index.html",
     "default_icon": "defaultcomologo.png"
   },
   "commands": {
