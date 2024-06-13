@@ -7,7 +7,7 @@ var webpack = require('webpack'),
   TerserPlugin = require('terser-webpack-plugin');
 var { CleanWebpackPlugin } = require('clean-webpack-plugin');
 var ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-var ReactRefreshTypeScript = require('react-refresh-typescript');
+var ReactRefreshTypeScript = require('react-refresh-typescript').default;
 
 const ASSET_PATH = process.env.ASSET_PATH || '/';
 
@@ -38,16 +38,14 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 var options = {
   mode: process.env.NODE_ENV || 'development',
   entry: {
-    // newtab: path.join(__dirname, 'src', 'pages', 'Newtab', 'index.jsx'),
     options: path.join(__dirname, 'src', 'pages', 'Options', 'index.jsx'),
     popup: path.join(__dirname, 'src', 'pages', 'Popup', 'index.jsx'),
     background: path.join(__dirname, 'src', 'pages', 'Background', 'index.js'),
     contentScript: path.join(__dirname, 'src', 'pages', 'Content', 'index.js'),
-    // devtools: path.join(__dirname, 'src', 'pages', 'Devtools', 'index.js'),
     panel: path.join(__dirname, 'src', 'pages', 'Panel', 'index.jsx'),
   },
   chromeExtensionBoilerplate: {
-    notHotReload: ['background', 'contentScript' ],
+    notHotReload: ['background', 'contentScript'],
   },
   output: {
     filename: '[name].bundle.js',
@@ -58,32 +56,17 @@ var options = {
   module: {
     rules: [
       {
-        // look for .css or .scss files
         test: /\.(css|scss)$/,
-        // in the `src` directory
         use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true,
-            },
-          },
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+          { loader: 'sass-loader', options: { sourceMap: true } },
         ],
       },
       {
         test: new RegExp('.(' + fileExtensions.join('|') + ')$'),
         type: 'asset/resource',
         exclude: /node_modules/,
-        // loader: 'file-loader',
-        // options: {
-        //   name: '[name].[ext]',
-        // },
       },
       {
         test: /\.html$/,
@@ -110,9 +93,7 @@ var options = {
       {
         test: /\.(js|jsx)$/,
         use: [
-          {
-            loader: 'source-map-loader',
-          },
+          { loader: 'source-map-loader' },
           {
             loader: require.resolve('babel-loader'),
             options: {
@@ -133,10 +114,8 @@ var options = {
       .concat(['.js', '.jsx', '.ts', '.tsx', '.css']),
   },
   plugins: [
-    isDevelopment && new ReactRefreshWebpackPlugin(),
     new CleanWebpackPlugin({ verbose: false }),
     new webpack.ProgressPlugin(),
-    // expose and write the allowed env vars on the compiled bundle
     new webpack.EnvironmentPlugin(['NODE_ENV']),
     new CopyWebpackPlugin({
       patterns: [
@@ -145,7 +124,6 @@ var options = {
           to: path.join(__dirname, 'build'),
           force: true,
           transform: function (content, path) {
-            // generates the manifest file using the package.json informations
             return Buffer.from(
               JSON.stringify({
                 description: process.env.npm_package_description,
@@ -169,27 +147,12 @@ var options = {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: 'src/assets/img/defaultcomologo.png', //logo 이미지 경로 컨트롤 
-          to: path.join(__dirname, 'build'),
-          force: true,
-        },
-      ],
-    }),
-    new CopyWebpackPlugin({
-      patterns: [
-        {
           from: 'src/assets/img/defaultcomologo.png',
           to: path.join(__dirname, 'build'),
           force: true,
         },
       ],
     }),
-    // new HtmlWebpackPlugin({
-    //   template: path.join(__dirname, 'src', 'pages', 'Newtab', 'index.html'),
-    //   filename: 'newtab.html',
-    //   chunks: ['newtab'],
-    //   cache: false,
-    // }),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src', 'pages', 'Options', 'index.html'),
       filename: 'options.html',
@@ -202,12 +165,6 @@ var options = {
       chunks: ['popup'],
       cache: false,
     }),
-    // new HtmlWebpackPlugin({
-    //   template: path.join(__dirname, 'src', 'pages', 'Devtools', 'index.html'),
-    //   filename: 'devtools.html',
-    //   chunks: ['devtools'],
-    //   cache: false,
-    // }),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src', 'pages', 'Panel', 'index.html'),
       filename: 'panel.html',
@@ -222,6 +179,7 @@ var options = {
 
 if (env.NODE_ENV === 'development') {
   options.devtool = 'cheap-module-source-map';
+  options.plugins.push(new ReactRefreshWebpackPlugin());
 } else {
   options.optimization = {
     minimize: true,
