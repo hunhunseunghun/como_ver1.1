@@ -51,7 +51,7 @@ const CoinItemKRW = ({
 
           <div>
             <div>{ticker.korean_name}</div>
-            {/* TODO: 1. 컬러변경, 2. 마켓 */}
+            {/* TODO:  2. 마켓 */}
             <div>
               {ticker.market.replace('-', '').substring(3, 6) +
                 '/' +
