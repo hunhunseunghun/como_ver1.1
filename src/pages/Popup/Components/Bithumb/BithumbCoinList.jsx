@@ -147,7 +147,7 @@ const BithumbCoinList = ({
 
     bithumbTickersBtcArr = bithumbTickersBtcArr.filter(
       (ele) =>
-        //코인 마켓명(심볼) 검색
+        //코인 마켓명 검색
         ele['market']
           .replace('_', '')
           .toLowerCase()
