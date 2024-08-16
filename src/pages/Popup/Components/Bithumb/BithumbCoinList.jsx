@@ -125,7 +125,6 @@ const BithumbCoinList = ({
         });
       });
 
-      //empty값 삭제
       const deleteBooleanBTC = bithumbTickersBtcArr.filter(Boolean);
 
       bithumbTickersBtcArr = [...markedArrBTC, ...deleteBooleanBTC];
