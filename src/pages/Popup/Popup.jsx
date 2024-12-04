@@ -34,7 +34,7 @@ const Popup = () => {
   }, [dispatch]);
 
   const windowResize = () => {
-    // document.body.clientHeight(500);
+    document.body.clientHeight(500);
     switch (windowXaxisSize) {
       case true:
         return;
@@ -68,13 +68,11 @@ const Popup = () => {
   return (
     <div className="App">
       <nav>
-        
-
         <section className="nav_top_section">
           <img src={defaultcomologo}></img>
 
           <section>
-            {/* <div
+            <div
               className="windowXaxisSize_btn"
               onClick={() => {
                 setWindowYaxisSize(!windowYaxisSize);
@@ -89,7 +87,7 @@ const Popup = () => {
               ) : (
                 <CgArrowLeftR size="20" />
               )}
-            </div> */}
+            </div>
             <div
               className="windowYaxisSize_btn"
               onClick={() => {
