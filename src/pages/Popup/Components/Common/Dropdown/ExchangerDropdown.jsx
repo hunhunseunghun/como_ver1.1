@@ -18,6 +18,11 @@ export const ExchangerDropdown = ({
     document.addEventListener('click', handleClickOutside);
   }, [outsideRef]);
 
+  useEffect(() => {
+    localStorage.setItem('como_lastest_currency', dropDownSelected);
+    console.log(isActive);
+  }, [dropDownSelected]);
+
   const handleExchangerLogo = () => {
     switch (dropDownSelected) {
       case '업비트':

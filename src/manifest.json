@@ -12,8 +12,8 @@
   "commands": {
     "_execute_action": {
       "suggested_key": {
-        "default": "Alt+Q",
-        "mac": "Alt+Q"
+        "default": "Ctrl+Q",
+        "mac": "Ctrl+Q"
       },
       "description": "COMO"
     }

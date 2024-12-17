@@ -18,11 +18,15 @@ import {
 import defaultcomologo from '../../assets/img/defaultcomologo.png';
 
 const Popup = () => {
+  const lastestCurrency = localStorage.getItem('como_lastest_currency')
+    ? localStorage.getItem('como_lastest_currency')
+    : '업비트';
+  console.log('lastestCurrency : ', lastestCurrency);
   const dispatch = useDispatch();
   const searchInputRef = useRef();
   const [makeSort, setMakeSort] = useState('decending');
   const [sortElement, setSortElement] = useState('trade_price');
-  const [dropDownSelected, setDropDownSelected] = useState('업비트');
+  const [dropDownSelected, setDropDownSelected] = useState(lastestCurrency);
   const [marketDropDownSelected, setmarketDropDownSelected] = useState('KRW');
   const [searchCoinName, setSearchCoinName] = useState('');
   const [windowXaxisSize, setWindowXaxisSize] = useState(false);
@@ -34,7 +38,7 @@ const Popup = () => {
   }, [dispatch]);
 
   const windowResize = () => {
-    // document.body.clientHeight(500);
+    document.body.clientHeight(500);
     switch (windowXaxisSize) {
       case true:
         return;
@@ -68,13 +72,11 @@ const Popup = () => {
   return (
     <div className="App">
       <nav>
-        
-
         <section className="nav_top_section">
           <img src={defaultcomologo}></img>
 
           <section>
-            {/* <div
+            <div
               className="windowXaxisSize_btn"
               onClick={() => {
                 setWindowYaxisSize(!windowYaxisSize);
@@ -89,7 +91,7 @@ const Popup = () => {
               ) : (
                 <CgArrowLeftR size="20" />
               )}
-            </div> */}
+            </div>
             <div
               className="windowYaxisSize_btn"
               onClick={() => {
@@ -123,7 +125,6 @@ const Popup = () => {
               type="text"
               placeholder=""
               onChange={(e) => {
-                console.log(e.target.value);
                 setSearchCoinName(e.target.value);
               }}
             />
