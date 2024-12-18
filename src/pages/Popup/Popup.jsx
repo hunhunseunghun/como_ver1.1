@@ -22,11 +22,12 @@ const Popup = () => {
     ? localStorage.getItem('como_lastest_currency')
     : '업비트';
   const lastestXwideState = localStorage.getItem('como_lastest_xwide')
-    ? localStorage.getItem('como_lastest_xwide')
+    ? localStorage.getItem('como_lastest_xwide') === 'true'
     : false;
-  const lastestYwideState = localStorage.getItem('como_lastest_ywide')
-    ? localStorage.getItem('como_lastest_ywide')
-    : false;
+  const lastestYwideState =
+    localStorage.getItem('como_lastest_ywide') === 'true'
+      ? localStorage.getItem('como_lastest_ywide')
+      : false;
 
   const dispatch = useDispatch();
   const searchInputRef = useRef();
@@ -43,9 +44,10 @@ const Popup = () => {
     dispatch(startBithumb());
   }, [dispatch]);
 
-  const windowResize = () => {
-    document.body.style.height = '500px';
-    console.log('windowYaxisSize : ', windowYaxisSize);
+  const windowResize = (param) => {
+    return param === 'windowYaxisSize'
+      ? localStorage.setItem('como_lastest_ywide', !windowYaxisSize)
+      : localStorage.setItem('como_lastest_xwide', !windowXaxisSize);
   };
 
   const handleSortPrice = () => {
@@ -83,7 +85,7 @@ const Popup = () => {
               className="windowYaxisSize_btn"
               onClick={() => {
                 setWindowYaxisSize(!windowYaxisSize);
-                windowResize();
+                windowResize('windowYaxisSize');
               }}
               data-tip
               data-for="windowYaxisSize_btn_tooltip"
@@ -99,15 +101,16 @@ const Popup = () => {
               className="windowXaxisSize_btn"
               onClick={() => {
                 setWindowXaxisSize(!windowXaxisSize);
+                windowResize('windowXaxisSize');
               }}
               data-tip
               data-="windowXaxisSize_btn_tooltip"
               title={`창 가로 ${windowXaxisSize ? '축소' : '확대'}`}
             >
               {windowXaxisSize ? (
-                <CgArrowRightR size="20" />
-              ) : (
                 <CgArrowLeftR size="20" />
+              ) : (
+                <CgArrowRightR size="20" />
               )}
             </div>
           </section>
