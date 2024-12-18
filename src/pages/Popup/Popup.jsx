@@ -21,7 +21,13 @@ const Popup = () => {
   const lastestCurrency = localStorage.getItem('como_lastest_currency')
     ? localStorage.getItem('como_lastest_currency')
     : '업비트';
-  console.log('lastestCurrency : ', lastestCurrency);
+  const lastestXwideState = localStorage.getItem('como_lastest_xwide')
+    ? localStorage.getItem('como_lastest_xwide')
+    : false;
+  const lastestYwideState = localStorage.getItem('como_lastest_ywide')
+    ? localStorage.getItem('como_lastest_ywide')
+    : false;
+
   const dispatch = useDispatch();
   const searchInputRef = useRef();
   const [makeSort, setMakeSort] = useState('decending');
@@ -29,8 +35,8 @@ const Popup = () => {
   const [dropDownSelected, setDropDownSelected] = useState(lastestCurrency);
   const [marketDropDownSelected, setmarketDropDownSelected] = useState('KRW');
   const [searchCoinName, setSearchCoinName] = useState('');
-  const [windowXaxisSize, setWindowXaxisSize] = useState(false);
-  const [windowYaxisSize, setWindowYaxisSize] = useState(false);
+  const [windowXaxisSize, setWindowXaxisSize] = useState(lastestXwideState);
+  const [windowYaxisSize, setWindowYaxisSize] = useState(lastestYwideState);
 
   useEffect(() => {
     dispatch(startInit());
@@ -38,11 +44,8 @@ const Popup = () => {
   }, [dispatch]);
 
   const windowResize = () => {
-    document.body.clientHeight(500);
-    switch (windowXaxisSize) {
-      case true:
-        return;
-    }
+    document.body.style.height = '500px';
+    console.log('windowYaxisSize : ', windowYaxisSize);
   };
 
   const handleSortPrice = () => {
@@ -77,35 +80,34 @@ const Popup = () => {
 
           <section>
             <div
-              className="windowXaxisSize_btn"
+              className="windowYaxisSize_btn"
               onClick={() => {
                 setWindowYaxisSize(!windowYaxisSize);
                 windowResize();
               }}
               data-tip
-              data-for="windowXaxisSize_btn_tooltip"
+              data-for="windowYaxisSize_btn_tooltip"
               title={`창 세로 ${windowYaxisSize ? '축소' : '확대'}`}
             >
               {windowYaxisSize ? (
-                <CgArrowRightR size="20" />
+                <CgArrowUpR size="20" />
               ) : (
-                <CgArrowLeftR size="20" />
+                <CgArrowDownR size="20" />
               )}
             </div>
             <div
-              className="windowYaxisSize_btn"
+              className="windowXaxisSize_btn"
               onClick={() => {
                 setWindowXaxisSize(!windowXaxisSize);
-                windowResize();
               }}
               data-tip
               data-="windowXaxisSize_btn_tooltip"
               title={`창 가로 ${windowXaxisSize ? '축소' : '확대'}`}
             >
               {windowXaxisSize ? (
-                <CgArrowUpR size="20" />
+                <CgArrowRightR size="20" />
               ) : (
-                <CgArrowDownR size="20" />
+                <CgArrowLeftR size="20" />
               )}
             </div>
           </section>

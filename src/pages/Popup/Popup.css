@@ -53,8 +53,7 @@ nav section:first-child input {
 }
 
 .windowYaxisSize_btn {
-  display: none;
-  color: white;
+  color: #888383;
 }
 
 .windowXaxisSize_btn:hover {
@@ -239,10 +238,10 @@ table {
   background-color: #ffffff;
 }
 
-.table_X_wide {
-  height: 500px;
-}
 .table_Y_wide {
+  height: 800px;
+}
+.table_X_wide {
   width: 700px;
 }
 
