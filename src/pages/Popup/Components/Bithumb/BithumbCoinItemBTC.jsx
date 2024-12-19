@@ -2,7 +2,27 @@ import React, { useEffect, useState } from 'react';
 import { FiStar } from 'react-icons/fi';
 import { AiFillStar } from 'react-icons/ai';
 
-const BithumbCoinItemBTC = ({
+interface Ticker {
+  market: string;
+  korean_name: string;
+  trade_price: number;
+  closePrice?: number;
+  prevClosePrice?: number;
+  closing_price?: number;
+  prev_closing_price?: number;
+  chgRate?: number;
+  acc_trade_price_24h: number;
+}
+
+interface BithumbCoinItemBTCProps {
+  ticker: Ticker;
+  markedCoinBTC: string[];
+  setMarkedCoinBTC: (markedCoins: string[]) => void;
+  switchColorHandler: (chgRate: number | string) => string;
+  localStorageDataBTC: string[];
+}
+
+const BithumbCoinItemBTC: React.FC<BithumbCoinItemBTCProps> = ({
   ticker,
   markedCoinBTC,
   setMarkedCoinBTC,
@@ -10,63 +30,64 @@ const BithumbCoinItemBTC = ({
   localStorageDataBTC,
   favoriteFnActive,
 }) => {
-  const [isMarked, setIsMarked] = useState(false);
+  const [isMarked, setIsMarked] = useState<boolean>(false);
 
   useEffect(() => {
-    //로컬스토리지 즐겨찾기 배열 데이터에서 해당요소 확인 (마켓이름 사용)
     const confirmMarkedTicker = localStorageDataBTC.filter(
       (ele) => ele === ticker.market
     );
     if (localStorageDataBTC.length > 0 && confirmMarkedTicker.length > 0) {
       setIsMarked(true);
     }
-  }, [localStorageDataBTC]);
+  }, [localStorageDataBTC, ticker.market]);
 
-  const handleMarkedCoin = () => {
-    //즐겨찾기 배열 데이터 추가, 삭제
-    if (isMarked === false) {
+  const handleMarkedCoin = (): void => {
+    if (!isMarked) {
       const marked = [...markedCoinBTC, ticker.market];
       setMarkedCoinBTC(marked);
-      setIsMarked(true);
-      console.log('ismared', isMarked);
-      localStorage.setItem('isBithumbMarkedCoinBTC', JSON.stringify(marked)); //즐겨찾기 데이터 로컬스토리지 사용(새로고침해도 유지 )
+      localStorage.setItem('isBithumbMarkedCoinBTC', JSON.stringify(marked));
     } else {
-      const marked = [...markedCoinBTC];
-      marked.splice([...markedCoinBTC].indexOf(ticker.market), 1);
+      const marked = markedCoinBTC.filter((coin) => coin !== ticker.market);
       setMarkedCoinBTC(marked);
       setIsMarked(false);
-      console.log('ismarked', isMarked);
       localStorage.setItem('isBithumbMarkedCoinBTC', JSON.stringify(marked));
     }
   };
 
-  const chgPriceHandler = () => {
-    if (ticker.closePrice) {
-      if (Math.abs(ticker.closePrice - ticker.prevClosePrice) > 100) {
-        return ticker.closePrice - ticker.prevClosePrice;
-      } else {
-        return (ticker.closePrice - ticker.prevClosePrice).toFixed(7);
-      }
-    } else {
-      if (Math.abs(ticker.closing_price - ticker.prev_closing_price) > 100) {
-        return ticker.closing_price - ticker.prev_closing_price;
-      } else {
-        return (ticker.closing_price - ticker.prev_closing_price).toFixed(7);
-      }
+  const chgPriceHandler = (): number | string => {
+    if (ticker.closePrice !== undefined && ticker.prevClosePrice !== undefined) {
+      return Math.abs(ticker.closePrice - ticker.prevClosePrice) > 100
+        ? ticker.closePrice - ticker.prevClosePrice
+        : (ticker.closePrice - ticker.prevClosePrice).toFixed(7);
+    } else if (
+      ticker.closing_price !== undefined &&
+      ticker.prev_closing_price !== undefined
+    ) {
+      return Math.abs(ticker.closing_price - ticker.prev_closing_price) > 100
+        ? ticker.closing_price - ticker.prev_closing_price
+        : (ticker.closing_price - ticker.prev_closing_price).toFixed(7);
     }
+    return 'N/A';
   };
 
-  const chgRateHandler = () => {
-    if (ticker.prev_closing_price === '0') {
-      return 0;
-    } else {
+  const chgRateHandler = (): string => {
+    if (ticker.prev_closing_price === 0) {
+      return '0';
+    } else if (
+      ticker.closing_price !== undefined &&
+      ticker.prev_closing_price !== undefined
+    ) {
       return (
-        ((ticker.closing_price - ticker.prev_closing_price) /
-          ticker.prev_closing_price) *
-        100
-      ).toFixed(2);
+        (
+          ((ticker.closing_price - ticker.prev_closing_price) /
+            ticker.prev_closing_price) *
+          100
+        ).toFixed(2) + '%'
+      );
     }
+    return 'N/A';
   };
+
   return (
     <tr key={ticker.market}>
       <td className="coinItemsName">
@@ -99,8 +120,8 @@ const BithumbCoinItemBTC = ({
             ? switchColorHandler(ticker.chgRate)
             : switchColorHandler(
                 (
-                  ((ticker.closing_price - ticker.prev_closing_price) /
-                    ticker.prev_closing_price) *
+                  ((ticker.closing_price! - ticker.prev_closing_price!) /
+                    ticker.prev_closing_price!) *
                   100
                 ).toFixed(2)
               )
@@ -113,13 +134,13 @@ const BithumbCoinItemBTC = ({
           ticker.chgRate
             ? switchColorHandler(ticker.chgRate) + ' coinItemsRate'
             : switchColorHandler(
-                ((ticker.closing_price - ticker.prev_closing_price) /
-                  ticker.prev_closing_price) *
+                ((ticker.closing_price! - ticker.prev_closing_price!) /
+                  ticker.prev_closing_price!) *
                   100
               ) + ' coinItemsRate'
         }
       >
-        <div>{ticker.chgRate ? ticker.chgRate : chgRateHandler() + '%'}</div>
+        <div>{ticker.chgRate ? ticker.chgRate : chgRateHandler()}</div>
         <div>{chgPriceHandler()}</div>
       </td>
       <td className="coinTransactionamount">

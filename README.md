@@ -1,4 +1,4 @@
-# <img src="./src/assets/img/defaultcomologo.png"  width="80" height="80"/> **COMO** **_- Cryptocurrency Monitoring Chrome Extension_**
+# <img src="./src/assets/img/defaultcomologo.png"  width="40" height="40"/> **COMO** **_- Cryptocurrency Monitoring Chrome Extension_**
 
 <p align="center">
 <br>
@@ -9,7 +9,9 @@
 가상화폐 시세조회 크롬 익스텐션
 </p>
 
----
+## Chrome Webstore
+
+- "https://chrome.google.com/webstore/detail/%EC%BD%94%EB%AA%A8como-%EA%B0%80%EC%83%81%ED%99%94%ED%8F%90-%EA%B1%B0%EB%9E%98%EC%86%8C-%EC%8B%9C%EC%84%B8-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-%EB%B9%84/camiahnljjgndaficdcpboimdbdphnok"
 
 ## :wrench: Skills
 
@@ -37,19 +39,13 @@ DevDependencies
 <img alt="Google Chrome" src ="https://img.shields.io/badge/Google Chrome-4285F4.svg?&style=for-the-badge&logo=Google Chrome&logoColor=white"/>
 </p>
 
----
-
 ## Preview
 
-|<img src="./como_gif/COMO_마켓선택.gif"/>|<img src="./como_gif/COMO_거래소.gif"  />|
-|:---:|:---:|
-|KRW / BTC 마켓 지원|업비트 / 빗썸 지원|
-|<img src="./como_gif/COMO_즐겨찾기.gif"/>|<img src="./como_gif/COMO_창확장축소.gif"/>|
-|코인 즐겨찾기|창 확대 / 축소|
-|<img src="./como_gif/COMO_소팅기능.gif"/>|<img src="./como_gif/COMO_검색기능.gif"/>|
-|항목별 내림 / 오름차순 소팅|코인 한글 / 영문 검색|
-
----
+| <img src="./como_gif/COMO_거래소.gif" />  | <img src="./como_gif/COMO_마켓선택.gif"/> |
+| :---------------------------------------: | :---------------------------------------: |
+|              KRW / BTC 마켓               |               업비트 / 빗썸               |
+| <img src="./como_gif/COMO_즐겨찾기.gif"/> | <img src="./como_gif/COMO_검색기능.gif"/> |
+|                 즐겨찾기                  |                   검색                    |
 
 ## 프로젝트 구조
 
@@ -63,8 +59,6 @@ COMO-Chrome-Extension
       ├─ Reducer            # Redux Reducer를 모아놓고 관리합니다.
       ├─ Utils              # Redux Action의 함수들을 모아놓고 관리합니다.
 ```
-
----
 
 ## Architecture
 

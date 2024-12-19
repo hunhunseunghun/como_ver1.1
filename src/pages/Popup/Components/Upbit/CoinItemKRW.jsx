@@ -30,7 +30,7 @@ const CoinItemKRW = ({
       const marked = [...markedCoinKRW, ticker.market];
       setMarkedCoinKRW(marked);
       setIsMarked(true);
-      localStorage.setItem('isMarkedCoinKRW', JSON.stringify(marked)); //즐겨찾기 데이터 로컬스토리지 사용(새로고침해도 유지 )
+      localStorage.setItem('isMarkedCoinKRW', JSON.stringify(marked)); //
     } else {
       const marked = [...markedCoinKRW];
       marked.splice([...markedCoinKRW].indexOf(ticker.market), 1);
@@ -52,7 +52,7 @@ const CoinItemKRW = ({
 
           <div>
             <div>{ticker.korean_name}</div>
-            {/* TODO: 코인 네임 클릭시, link 리다이렉션 필요 */}
+            {/* TODO:   */}
             <div>
               {ticker.market.replace('-', '').substring(3, 6) +
                 '/' +
