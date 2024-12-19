@@ -48,6 +48,26 @@ nav section:first-child input {
   width: 25px;
 }
 
+.favorites_btn {
+  display: flex;
+  justify-content: center;
+  place-items: center;
+  color: #888383;
+  margin-right: 4px;
+}
+.favorites_fn_active {
+  color: #e4cf12;
+}
+
+.favorites_btn svg {
+  font-size: 20px;
+}
+
+.favorites_btn:hover {
+  color: #e4cf12;
+  cursor: pointer;
+}
+
 .windowXaxisSize_btn {
   color: #888383;
 }
@@ -366,7 +386,7 @@ table tbody tr td {
 
 .coinItemsMarked:hover {
   cursor: pointer;
-  color: rgb(255, 241, 116);
+  color: #e4cf12;
 }
 
 .coinItemsMarked svg {
@@ -375,7 +395,7 @@ table tbody tr td {
 }
 
 .markedIcon {
-  color: rgb(255, 231, 19);
+  color: #e4cf12;
 }
 
 .markedIcon svg {

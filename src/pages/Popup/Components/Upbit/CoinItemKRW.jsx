@@ -9,6 +9,7 @@ const CoinItemKRW = ({
   markedCoinKRW,
   setMarkedCoinKRW,
   localStorageDataKRW,
+  favoriteFnActive,
 }) => {
   const [isMarked, setIsMarked] = useState(false);
   const [isAlarmselected, setIsAlarmselected] = useState(false); // for alram state
@@ -59,15 +60,18 @@ const CoinItemKRW = ({
             </div>
           </div>
         </section>
-
-        <section
-          className={
-            isMarked ? 'coinItemsMarked markedIcon' : 'coinItemsMarked'
-          }
-          onClick={handleMarkedCoin}
-        >
-          {isMarked ? <AiFillStar /> : <FiStar />}
-        </section>
+        {favoriteFnActive ? (
+          <section
+            className={
+              isMarked ? 'coinItemsMarked markedIcon' : 'coinItemsMarked'
+            }
+            onClick={handleMarkedCoin}
+          >
+            {isMarked ? <AiFillStar /> : <FiStar />}
+          </section>
+        ) : (
+          <div></div>
+        )}
       </td>
       <td className={`${switchColorHandler(ticker.change)}`}>
         <div className="coinItemsPrice">

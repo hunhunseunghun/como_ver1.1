@@ -28,6 +28,7 @@ const BithumbCoinItemBTC: React.FC<BithumbCoinItemBTCProps> = ({
   setMarkedCoinBTC,
   switchColorHandler,
   localStorageDataBTC,
+  favoriteFnActive,
 }) => {
   const [isMarked, setIsMarked] = useState<boolean>(false);
 
@@ -44,7 +45,6 @@ const BithumbCoinItemBTC: React.FC<BithumbCoinItemBTCProps> = ({
     if (!isMarked) {
       const marked = [...markedCoinBTC, ticker.market];
       setMarkedCoinBTC(marked);
-      setIsMarked(true);
       localStorage.setItem('isBithumbMarkedCoinBTC', JSON.stringify(marked));
     } else {
       const marked = markedCoinBTC.filter((coin) => coin !== ticker.market);
@@ -99,14 +99,19 @@ const BithumbCoinItemBTC: React.FC<BithumbCoinItemBTCProps> = ({
             </div>
           </div>
         </section>
-        <section
-          className={
-            isMarked ? 'coinItemsMarked markedIcon' : 'coinItemsMarked'
-          }
-          onClick={handleMarkedCoin}
-        >
-          {isMarked ? <AiFillStar /> : <FiStar />}
-        </section>
+
+        {favoriteFnActive ? (
+          <section
+            className={
+              isMarked ? 'coinItemsMarked markedIcon' : 'coinItemsMarked'
+            }
+            onClick={handleMarkedCoin}
+          >
+            {isMarked ? <AiFillStar /> : <FiStar />}
+          </section>
+        ) : (
+          <div></div>
+        )}
       </td>
 
       <td

@@ -11,13 +11,14 @@ const CoinList = ({
   makeSort,
   sortElement,
   searchCoinName,
+  favoriteFnActive,
 }) => {
   let localStorageDataKRW = []; //즐겨찾기 데이터 로컬스토리지 사용(새로고침해도 유지 )
   let localStorageDataBTC = [];
-  if (localStorage.isMarkedCoinKRW) {
+  if (localStorage.isMarkedCoinKRW && favoriteFnActive) {
     localStorageDataKRW = JSON.parse(localStorage.isMarkedCoinKRW);
   }
-  if (localStorage.isMarkedCoinBTC) {
+  if (localStorage.isMarkedCoinBTC && favoriteFnActive) {
     localStorageDataBTC = JSON.parse(localStorage.isMarkedCoinBTC);
   }
 
@@ -62,21 +63,23 @@ const CoinList = ({
       //KRW 데이터 배열 핸들링
       const markedArrKRW = [];
 
-      // 코인데이터 배열 즐겨찾기된 요소 추출
-      markedCoinKRW.map((coinName) => {
-        const filteredCoin = upbitTickersArrKRW.filter(
-          (coin) => coin.market === coinName
-        );
-        markedArrKRW.push(filteredCoin[0]);
-      });
-      // 코인데이터 배열 즐겨찾기된 요소 삭제
-      markedCoinKRW.forEach((coinName) => {
-        upbitTickersArrKRW.forEach((ele, idx) => {
-          if (ele.market === coinName) {
-            delete upbitTickersArrKRW[idx];
-          }
+      if (favoriteFnActive) {
+        // 코인데이터 배열 즐겨찾기된 요소 추출
+        markedCoinKRW.map((coinName) => {
+          const filteredCoin = upbitTickersArrKRW.filter(
+            (coin) => coin.market === coinName
+          );
+          markedArrKRW.push(filteredCoin[0]);
         });
-      });
+        // 코인데이터 배열 즐겨찾기된 요소 삭제
+        markedCoinKRW.forEach((coinName) => {
+          upbitTickersArrKRW.forEach((ele, idx) => {
+            if (ele.market === coinName) {
+              delete upbitTickersArrKRW[idx];
+            }
+          });
+        });
+      }
 
       //empty값 삭제
       const deleteBooleanKRW = upbitTickersArrKRW.filter(Boolean);
@@ -87,22 +90,24 @@ const CoinList = ({
       //BTC 데이터 배열 핸들링
       const markedArrBTC = [];
 
-      // 코인데이터 배열 즐겨찾기된 요소 추출
-      markedCoinBTC.map((coinName) => {
-        const filteredCoin = upbitTickersArrBTC.filter(
-          (coin) => coin.market === coinName
-        );
-        markedArrBTC.push(filteredCoin[0]);
-      });
-
-      // 코인데이터 배열 즐겨찾기된 요소 삭제
-      markedCoinBTC.forEach((coinName) => {
-        upbitTickersArrBTC.forEach((ele, idx) => {
-          if (ele.market === coinName) {
-            delete upbitTickersArrBTC[idx];
-          }
+      if (favoriteFnActive) {
+        // 코인데이터 배열 즐겨찾기된 요소 추출
+        markedCoinBTC.map((coinName) => {
+          const filteredCoin = upbitTickersArrBTC.filter(
+            (coin) => coin.market === coinName
+          );
+          markedArrBTC.push(filteredCoin[0]);
         });
-      });
+
+        // 코인데이터 배열 즐겨찾기된 요소 삭제
+        markedCoinBTC.forEach((coinName) => {
+          upbitTickersArrBTC.forEach((ele, idx) => {
+            if (ele.market === coinName) {
+              delete upbitTickersArrBTC[idx];
+            }
+          });
+        });
+      }
 
       //empty값 삭제
       const deleteBooleanBTC = upbitTickersArrBTC.filter(Boolean);
@@ -190,6 +195,7 @@ const CoinList = ({
                 markedCoinKRW={markedCoinKRW}
                 setMarkedCoinKRW={setMarkedCoinKRW}
                 localStorageDataKRW={localStorageDataKRW}
+                favoriteFnActive={favoriteFnActive}
               />
             );
           })
@@ -203,6 +209,7 @@ const CoinList = ({
                 markedCoinBTC={markedCoinBTC}
                 setMarkedCoinBTC={setMarkedCoinBTC}
                 localStorageDataBTC={localStorageDataBTC}
+                favoriteFnActive={favoriteFnActive}
               />
             );
           })}
